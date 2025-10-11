@@ -61,6 +61,18 @@
     .colors img{width:100%;height:140px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow)}
     .colors p{margin-top:8px;color:var(--muted)}
 
+    /* Kalkulace */
+    .calc{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:32px;background:var(--card);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.08);}
+    @media(max-width:850px){.calc{grid-template-columns:1fr;text-align:center}}
+    .calc img{width:100%;max-width:320px;margin:auto;border-radius:12px;}
+    .calc-details h3{color:var(--gold);margin-bottom:10px}
+    .calc-details ul{list-style:none;margin:0 0 16px;padding:0}
+    .calc-details li{margin-bottom:6px;color:var(--muted)}
+    .price-old{text-decoration:line-through;color:var(--muted);font-size:18px;}
+    .discount{display:inline-block;background:linear-gradient(135deg,var(--orange),var(--gold-2));color:#1a1e27;padding:6px 14px;border-radius:8px;font-weight:700;margin:10px 0;}
+    .price-new{font-size:24px;font-weight:700;color:var(--gold-2);}
+    .price-new small{font-size:16px;color:var(--muted);display:block}
+
     /* Galerie */
     .gallery{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));margin-top:24px}
     .gallery img{width:100%;height:200px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow)}
@@ -122,13 +134,34 @@
       </div>
     </section>
 
+    <!-- Vzorová kalkulace -->
+    <section id="calc">
+      <h2>Vzorová kalkulace</h2>
+      <p class="section-lead">Příklad individuálně vyrobené rolety SollarRoll s kompletní výbavou.</p>
+      <div class="calc">
+        <img src="logo_svet_rolet.png" alt="Svět rolet logo – vzorová kalkulace">
+        <div class="calc-details">
+          <h3>Solární roleta SollarRoll</h3>
+          <ul>
+            <li>Rozměr: <strong>1750 × 1450 mm</strong></li>
+            <li>Barevné provedení: <strong>Stříbrná</strong></li>
+            <li>Pohon: <strong>Solární motor</strong></li>
+            <li>Ovládání: <strong>Dálkový ovladač pro 1 roletu</strong></li>
+          </ul>
+          <div class="price-old">22 144 Kč bez DPH (26 474,24 Kč s DPH)</div>
+          <div class="discount">AKCE –35% SLEVA</div>
+          <div class="price-new">14 394 Kč bez DPH<small>(17 416,74 Kč s DPH)</small></div>
+        </div>
+      </div>
+    </section>
+
     <section id="gallery">
       <h2>Galerie</h2>
       <p class="section-lead">Ukázky reálných instalací rolet SollarRoll.</p>
       <div class="gallery">
         <img src="panelový dům.png" alt="Instalace na panelovém domě">
-        <img src="Solární roleta.png" alt="Instalace na světlém rodinném domě">
-        <img src="rodinný_-_upravený.png" alt="Roleta na rodinném domě">
+        <img src="světlý rodinný dům.png" alt="Instalace na světlém rodinném domě">
+        <img src="rodinný - upravený.png" alt="Roleta na rodinném domě">
         <img src="panelák hnědá.png" alt="Tmavé provedení na moderním domě">
       </div>
     </section>
