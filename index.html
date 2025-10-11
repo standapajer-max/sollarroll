@@ -1,76 +1,169 @@
 <!doctype html>
 <html lang="cs">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Svět rolet – Solární předokenní roleta</title>
-<meta name="description" content="Nezávislá solární roleta pro váš stín, klid a bezpečí. Jednoduchá montáž, bez kabelů a s nulovými náklady na provoz." />
-<meta name="theme-color" content="#0b0e13" />
-<link rel="icon" href="logo_svet_rolet.png" type="image/png" />
-<style>
-:root {
---bg: #0b0e13;
---card: #121722;
---muted: #8892a6;
---text: #f5f7fb;
---gold: #caa66a;
---gold-2: #f0d28a;
---orange: #f5b35d;
---shadow: 0 10px 30px rgba(0, 0, 0, .35);
---radius: 18px;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; line-height: 1.6; }
-a { color: var(--gold); text-decoration: none; }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Svět rolet – Solární předokenní roleta</title>
+  <meta name="description" content="Nezávislá solární roleta pro váš stín, klid a bezpečí. Jednoduchá montáž, bez kabelů a s nulovými náklady na provoz." />
+  <meta name="theme-color" content="#0b0e13" />
+  <link rel="icon" href="logo_svet_rolet.png" type="image/png" />
+  <style>
+    :root {
+      --bg: #0b0e13;
+      --card: #121722;
+      --muted: #8892a6;
+      --text: #f5f7fb;
+      --gold: #caa66a;
+      --gold-2: #f0d28a;
+      --orange: #f5b35d;
+      --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; line-height: 1.6; }
+    a { color: var(--gold); text-decoration: none; }
 
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 24px; }
 
-.wrap { max-width: 1200px; margin: 0 auto; padding: 24px; }
+    header.nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #f5f7fb;
+      color: #0b0e13;
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(0, 0, 0, .1);
+      padding: 10px 0;
+      transition: top 0.4s ease;
+    }
+    header.nav.hidden { top: -120px; }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .brand { display: flex; align-items: center; gap: 16px; font-weight: 700; color: #0b0e13; }
+    .brand img { width: 90px; height: 90px; border-radius: 50%; transition: transform 0.3s ease; }
+    .brand img:hover { transform: scale(1.05); }
+    .brand span { font-size: 32px; font-weight: 800; letter-spacing: 0.8px; }
 
+    .actions a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      margin-left: 12px;
+    }
+    .actions a:first-child { background: #0b0e13; color: #f5f7fb; }
+    .actions a:last-child { background: linear-gradient(135deg, var(--gold), var(--gold-2)); color: #1a1e27; }
+    .actions a:hover { transform: translateY(-1px); }
 
-header.nav {
-position: sticky;
-top: 0;
-z-index: 50;
-background: #f5f7fb;
-color: #0b0e13;
-backdrop-filter: blur(8px);
-border-bottom: 1px solid rgba(0, 0, 0, .1);
-padding: 10px 0;
-transition: top 0.4s ease;
-}
-header.nav.hidden { top: -120px; }
-.nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
-.brand { display: flex; align-items: center; gap: 16px; font-weight: 700; color: #0b0e13; }
-.brand img { width: 90px; height: 90px; border-radius: 50%; transition: transform 0.3s ease; }
-.brand img:hover { transform: scale(1.05); }
-.brand span { font-size: 32px; font-weight: 800; letter-spacing: 0.8px; }
+    section { margin: 56px 0; }
+    h2 { font-size: clamp(22px, 3vw, 32px); margin-bottom: 10px; }
 
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 30px;
+    }
+    .benefit-card {
+      background: linear-gradient(145deg, #141924, #0f1219);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: var(--radius);
+      padding: 28px 22px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+    .benefit-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,.45); }
+    .benefit-icon {
+      width: 42px;
+      height: 42px;
+      margin-bottom: 16px;
+      color: var(--gold);
+    }
+    .benefit-card h3 { color: var(--gold-2); font-size: 20px; margin-bottom: 10px; }
+    .benefit-card p { color: var(--muted); font-size: 15px; }
 
-.actions a {
-display: inline-flex;
-align-items: center;
-gap: 8px;
-padding: 12px 18px;
-border-radius: 999px;
-font-weight: 700;
-border: none;
-cursor: pointer;
-box-shadow: var(--shadow);
-margin-left: 12px;
-}
-.actions a:first-child { background: #0b0e13; color: #f5f7fb; }
-.actions a:last-child { background: linear-gradient(135deg, var(--gold), var(--gold-2)); color: #1a1e27; }
-.actions a:hover { transform: translateY(-1px); }
+    .card { background: var(--card); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); border: 1px solid rgba(255,255,255,.08); }
 
+    .colors img, .gallery img { width: 100%; border-radius: 12px; object-fit: cover; box-shadow: var(--shadow); }
+    .colors { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 24px; text-align: center; }
+    .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; }
 
-section { margin: 56px 0; }
-h2 { font-size: clamp(22px, 3vw, 32px); margin-bottom: 10px; }
+    footer { margin-top: 72px; padding: 28px 0; color: var(--muted); border-top: 1px solid rgba(255, 255, 255, .06); text-align: center; }
+  </style>
+</head>
+<body>
+  <header class="nav" id="navbar">
+    <div class="wrap nav-inner">
+      <div class="brand">
+        <img src="logo_svet_rolet.png" alt="Logo Svět rolet">
+        <span>Svět rolet</span>
+      </div>
+      <div class="actions">
+        <a href="#specs">Technické parametry</a>
+        <a href="#form">Chci poptávku</a>
+      </div>
+    </div>
+  </header>
 
+  <main class="wrap">
+    <section class="hero">
+      <div>
+        <h1>Nezávislá solární roleta pro Váš stín, klid a bezpečí</h1>
+        <p class="lead">Prémiová roleta SollarRoll – bez kabeláže, chytré napájení a čistý design. Ideální pro novostavby i rekonstrukce.</p>
+      </div>
+      <img src="roletarez.jpg" alt="Řez solární roletou SollarRoll" loading="lazy">
+    </section>
 
-.benefits-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-gap: 24px;
-margin-top: 30px;
-}
-<tr><th>Dálkový ovladač až pro 15 rolet</th><td>Ideální pro větší objekty
+    <section id="benefits">
+      <h2>Proč si pořídit solární rolety?</h2>
+      <div class="benefits-grid">
+        <div class="benefit-card"><svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v18m9-9H3"/></svg><h3>Nezávislý provoz bez kabeláže</h3><p>Díky integrovanému solárnímu panelu a akumulátoru fungují rolety zcela samostatně – bez nutnosti napojení na elektrickou síť.</p></div>
+        <div class="benefit-card"><svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a9.985 9.985 0 00-7.07 2.93A9.985 9.985 0 002 12a9.985 9.985 0 002.93 7.07A9.985 9.985 0 0012 22a9.985 9.985 0 007.07-2.93A9.985 9.985 0 0022 12a9.985 9.985 0 00-2.93-7.07A9.985 9.985 0 0012 2z"/></svg><h3>Úspora energie a stabilní vnitřní teplota</h3><p>Rolety chrání interiér před přehříváním v létě a únikem tepla v zimě, což snižuje náklady na klimatizaci i vytápění.</p></div>
+        <div class="benefit-card"><svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 1.657-1.343 3-3 3S6 12.657 6 11s1.343-3 3-3 3 1.343 3 3zM18 11c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3z"/></svg><h3>Zvýšení bezpečnosti a soukromí</h3><p>Robustní konstrukce z hliníku ztěžuje neoprávněné vniknutí a zároveň chrání okna před pohledy zvenčí.</p></div>
+        <div class="benefit-card"><svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><h3>Úplné zatemnění a klidný spánek</h3><p>Lamely s těsným dosednutím umožňují úplné zatemnění místnosti – ideální pro ložnice, dětské pokoje nebo domácí kino.</p></div>
+        <div class="benefit-card"><svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6h13M5 13H2v9h3v-9z"/></svg><h3>Účinné tlumení hluku zvenčí</h3><p>Díky hliníkovým lamelám s výplní z PUR pěny rolety výrazně snižují hluk z ulice či deště a zlepšují akustický komfort v interiéru.</p></div>
+        <div class="benefit-card"><svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 21v-2a4 4 0 014-4h8a4 4 0 014 4v2M8 7a4 4 0 118 0v4H8V7z"/></svg><h3>Ochrana oken a interiéru</h3><p>Rolety prodlužují životnost oken a brání vyblednutí nábytku a textilií vlivem slunečního záření.</p></div>
+        <div class="benefit-card"><svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v8m4-4H8"/></svg><h3>Jednoduché ovládání</h3><p>Možnost dálkového ovladače, nástěnného tlačítka nebo mobilní aplikace zajišťuje pohodlné ovládání odkudkoliv.</p></div>
+        <div class="benefit-card"><svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a10 10 0 100 20 10 10 0 000-20z"/></svg><h3>Provoz bez dalších nákladů</h3><p>Solární systém si sám vyrábí potřebnou energii z běžného i nepřímého slunečního záření – bez poplatků, údržby či výměny baterií.</p></div>
+        <div class="benefit-card"><svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg><h3>Snadná montáž a flexibilní použití</h3><p>Instalace bez kabelů je ideální pro novostavby i rekonstrukce, bez nutnosti zásahů do fasády či elektroinstalace.</p></div>
+      </div>
+    </section>
+
+    <section id="specs">
+      <h2>Technické parametry</h2>
+      <div class="card">
+        <table>
+          <tr><th>Napájení</th><td>Solární panel + akumulátor – vše je již součástí rolety</td></tr>
+          <tr><th>Ovládání</th><td>Dálkové nebo mobilní aplikace</td></tr>
+          <tr><th>Lamely</th><td>Hliníkové lamely vyplněné PUR pěnou, povrchová úprava práškové lakování</td></tr>
+          <tr><th>Vodící lišty</th><td>Hliníkové vodící lišty, šířka 53 nebo 68 mm</td></tr>
+          <tr><th>Boxy rolet</th><td>Hliníkové boxy 150 mm, 165 mm, 180 mm nebo 205 mm podle velikosti rolety, s práškovým lakováním</td></tr>
+          <tr><th>Výroba</th><td>Rolety vyrábíme individuálně dle Vámi zadaného rozměru</td></tr>
+          <tr><th>Záruka</th><td>24 měsíců</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section id="colors">
+      <h2>Barevné provedení</h2>
+      <div class="colors">
+        <div><img src="stříbrná.jpg" alt="Stříbrná"><p>Stříbrná</p></div>
+        <div><img src="bílá.jpg" alt="Bílá"><p>Bílá</p></div>
+        <div><img src="hnědá.jpg" alt="Hnědá RAL 8014"><p>Hnědá RAL 8014</p></div>
+        <div><img src="tmavě_hnědá.jpg" alt="Tmavě hnědá"><p>Tmavě hnědá</p></div>
+        <div><img src="antracit.jpg" alt="Antracit RAL 7016"><p>Antracit RAL 7016</p></div>
+        <div><img src="zlatý_dub.jpg" alt="Zlatý dub"><p>Zlatý dub</p></div>
+      </div>
+    </section>
+
+    <section id="controls">
+      <h2>Ovládací prvky</h2>
+      <div class="card">
+        <table>
+          <tr><th>Dálkový ovladač pro 1 roletu</th><td>Jednoduché ovládání jedné rolety</td></tr>
+          <tr><th>Dálkový ovladač až pro 5 rolet</th><td>Možnost časování – automatické zavírání/otvírání</td></tr>
+          <tr><th>Dálkový ovladač až pro 15 rolet</th><td>Ideální pro větší objekty
