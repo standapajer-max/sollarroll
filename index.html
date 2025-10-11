@@ -166,4 +166,79 @@
         <table>
           <tr><th>Dálkový ovladač pro 1 roletu</th><td>Jednoduché ovládání jedné rolety</td></tr>
           <tr><th>Dálkový ovladač až pro 5 rolet</th><td>Možnost časování – automatické zavírání/otvírání</td></tr>
-          <tr><th>Dálkový ovladač až pro 15 rolet</th><td>Ideální pro větší objekty
+          <tr><th>Dálkový ovladač až pro 15 rolet</th><td>Ideální pro větší objekty</td></tr>
+          <tr><th>Tlačítko na zeď</th><td>Jednoduché lokální ovládání</td></tr>
+          <tr><th>Smart Hub</th><td>Ovládání přes aplikaci, nutné Wi-Fi připojení</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section id="calc">
+      <h2>Vzorová kalkulace</h2>
+      <div class="card">
+        <div class="calc">
+          <img src="vzor.jpg" alt="Solární roleta SollarRoll – vzorová kalkulace">
+          <div class="calc-details">
+            <h3>Solární roleta SollarRoll</h3>
+            <ul>
+              <li>Rozměr: <strong>1750 × 1450 mm</strong></li>
+              <li>Barevné provedení: <strong>Stříbrná</strong></li>
+              <li>Pohon: <strong>Solární motor</strong></li>
+              <li>Ovládání: <strong>Dálkový ovladač pro 1 roletu</strong></li>
+            </ul>
+            <div class="price-old">22 144 Kč bez DPH (26 474,24 Kč s DPH)</div>
+            <div class="discount">🎉 AKCE – 35 % SLEVA NA VŠE 🎉</div>
+            <div class="price-new">14 394 Kč bez DPH<small>(17 416,74 Kč s DPH)</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <h2>Galerie</h2>
+      <div class="gallery">
+        <img src="panelhouse.png" alt="Instalace na panelovém domě">
+        <img src="roh.png" alt="Instalace na rodinném domě">
+        <img src="rd.png" alt="Rodinný dům">
+        <img src="panelbrown.png" alt="Moderní tmavé provedení">
+      </div>
+    </section>
+
+    <section id="form">
+      <h2>Nezávazná poptávka</h2>
+      <div class="card">
+        <p><em>Formulář bude doplněn (PHP verze – jméno, kontakt, zpráva, odeslání na e-mail).</em></p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Kontakt</h2>
+      <div class="card">
+        <p><strong>Svět rolet</strong><br>
+        Pšenčíkova 797/3, Kamýk, 142 00 Praha<br>
+        E-mail: <a href="mailto:info@svetrolet.cz">info@svetrolet.cz</a><br>
+        Telefon: <a href="tel:+420602314106">+420 602 314 106</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <small>© <span id="year"></span> Svět rolet. Všechna práva vyhrazena.</small>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    let lastScroll = 0;
+    const navbar = document.getElementById("navbar");
+    window.addEventListener("scroll", () => {
+      const current = window.pageYOffset;
+      if (current > lastScroll && current > 100) navbar.classList.add("hidden");
+      else navbar.classList.remove("hidden");
+      lastScroll = current;
+    });
+  </script>
+</body>
+</html>
