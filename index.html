@@ -77,6 +77,16 @@
     th,td{padding:10px 12px;border-bottom:1px dashed rgba(255,255,255,.08);text-align:left}
     th{color:var(--muted)}
 
+    /* Table Responsiveness */
+    .responsive-table-wrapper {
+        overflow-x: auto; /* Povolí horizontální posun na mobilu, pokud se tabulka nevejde */
+        width: 100%;
+        -webkit-overflow-scrolling: touch;
+    }
+    .responsive-table-wrapper table {
+        min-width: 500px; /* Zajistí, že tabulka bude posuvná */
+    }
+
     /* Barvy */
     .colors{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:24px;margin-top:24px;text-align:center}
     .colors img{width:100%;height:140px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow)}
@@ -114,6 +124,53 @@
     .mini-colors img{width:100%;height:60px;object-fit:cover;border-radius:6px;margin-bottom:6px}
 
     footer{margin-top:72px;padding:28px 0;color:var(--muted);border-top:1px solid rgba(255,255,255,.06);text-align:center}
+
+    /* === MOBILNÍ OPTIMALIZACE (MAX-WIDTH: 600PX) === */
+    @media (max-width: 600px) {
+        .wrap {
+            padding: 16px; 
+        }
+        
+        /* Navigace */
+        .nav-inner {
+            gap: 20px;
+        }
+        .brand img {
+            width: 60px; /* Zmenšení loga */
+            height: 60px;
+        }
+        .brand span {
+            font-size: 24px; /* Zmenšení textu značky */
+        }
+        .actions .btn {
+            display: none; /* Skrytí sekundárního tlačítka */
+        }
+        .actions .cta {
+            padding: 8px 14px; /* Zmenšení CTA */
+            font-size: 14px;
+        }
+        .hero {
+            margin-top: 20px;
+        }
+
+        /* Formulář */
+        .color-preview {
+            grid-template-columns: 1fr; /* Stohování náhledu barev */
+        }
+
+        /* Kritická úprava pro řádek s rozměry (7 položek) */
+        #roles-container .form-row {
+            /* Vynucení pouze dvou sloupců na mobilu pro přehlednost */
+            grid-template-columns: 1fr 1fr; 
+            gap: 8px;
+        }
+        
+        /* Obal tabulky - jen zajistíme, že se vejde */
+        .responsive-table-wrapper {
+            margin: 0 -10px; /* Malý záporný okraj pro lepší zobrazení posuvné tabulky */
+            padding: 0 10px;
+        }
+    }
   </style>
 </head>
 <body>
@@ -156,32 +213,36 @@
     <section id="specs">
       <h2>Technické parametry</h2>
       <div class="card">
-        <table>
-          <tbody>
-            <tr><th>Napájení</th><td>Solární panel + akumulátor – vše je již součástí rolety</td></tr>
-            <tr><th>Ovládání</th><td>Dálkové nebo mobilní aplikace</td></tr>
-            <tr><th>Lamely</th><td>Hliníkové lamely vyplněné PUR pěnou, povrchová úprava práškové lakování</td></tr>
-            <tr><th>Vodící lišty</th><td>Hliníkové vodící lišty, šířka 53 nebo 68 mm</td></tr>
-            <tr><th>Boxy rolet</th><td>Hliníkové boxy 150, 165, 180 nebo 205 mm s práškovým lakováním</td></tr>
-            <tr><th>Výroba</th><td>Rolety vyrábíme individuálně dle Vámi zadaného rozměru</td></tr>
-            <tr><th>Záruka</th><td>24 měsíců</td></tr>
-          </tbody>
-        </table>
+        <div class="responsive-table-wrapper">
+          <table>
+            <tbody>
+              <tr><th>Napájení</th><td>Solární panel + akumulátor – vše je již součástí rolety</td></tr>
+              <tr><th>Ovládání</th><td>Dálkové nebo mobilní aplikace</td></tr>
+              <tr><th>Lamely</th><td>Hliníkové lamely vyplněné PUR pěnou, povrchová úprava práškové lakování</td></tr>
+              <tr><th>Vodící lišty</th><td>Hliníkové vodící lišty, šířka 53 nebo 68 mm</td></tr>
+              <tr><th>Boxy rolet</th><td>Hliníkové boxy 150, 165, 180 nebo 205 mm s práškovým lakováním</td></tr>
+              <tr><th>Výroba</th><td>Rolety vyrábíme individuálně dle Vámi zadaného rozměru</td></tr>
+              <tr><th>Záruka</th><td>24 měsíců</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
 
     <section id="controls">
       <h2>Ovládací prvky</h2>
       <div class="card">
-        <table>
-          <tbody>
-            <tr><th>Dálkový ovladač pro 1 roletu</th><td>Základní ruční ovládání jedné rolety.</td></tr>
-            <tr><th>Dálkový ovladač až pro 5 rolet</th><td>Možnost časování – automatické zavírání a otvírání rolet.</td></tr>
-            <tr><th>Dálkový ovladač až pro 15 roletu</th><td>Komplexní ovládání většího počtu rolet.</td></tr>
-            <tr><th>Dálkový ovladač na zeď</th><td>Tlačítkové provedení pro 1 roletu – elegantní doplněk interiéru.</td></tr>
-            <tr><th>Smart Hub</th><td>Ovládání přes mobilní aplikaci – vyžaduje Wi‑Fi a internet.</td></tr>
-          </tbody>
-        </table>
+        <div class="responsive-table-wrapper">
+          <table>
+            <tbody>
+              <tr><th>Dálkový ovladač pro 1 roletu</th><td>Základní ruční ovládání jedné rolety.</td></tr>
+              <tr><th>Dálkový ovladač až pro 5 rolet</th><td>Možnost časování – automatické zavírání a otvírání rolet.</td></tr>
+              <tr><th>Dálkový ovladač až pro 15 roletu</th><td>Komplexní ovládání většího počtu rolet.</td></tr>
+              <tr><th>Dálkový ovladač na zeď</th><td>Tlačítkové provedení pro 1 roletu – elegantní doplněk interiéru.</td></tr>
+              <tr><th>Smart Hub</th><td>Ovládání přes mobilní aplikaci – vyžaduje Wi‑Fi a internet.</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
 
@@ -231,7 +292,8 @@
 
     <section id="form">
       <h2>Poptávkový formulář</h2>
-      <div class="card"> <div class="color-preview">
+      <div class="card">
+        <div class="color-preview">
           <img src="barvyumisteni.jpg" alt="Umístění barev na roletě">
           <div class="mini-colors">
             <div><img src="stribrna.jpg" alt="Stříbrná"><p>Stříbrná</p></div>
@@ -266,15 +328,17 @@
 
           <h3 style="margin-top:18px">Ovladače</h3>
           <div class="card">
-            <table>
-              <tbody>
-                <tr><th>Dálkový ovladač pro 1 roletu</th><td><input type="number" placeholder="Počet ks"></td></tr>
-                <tr><th>Dálkový ovladač až pro 5 rolet</th><td><input type="number" placeholder="Počet ks"></td></tr>
-                <tr><th>Dálkový ovladač až pro 15 roletu</th><td><input type="number" placeholder="Počet ks"></td></tr>
-                <tr><th>Dálkový ovladač na zeď</th><td><input type="number" placeholder="Počet ks"></td></tr>
-                <tr><th>Smart Hub</th><td><input type="number" placeholder="Počet ks"></td></tr>
-              </tbody>
-            </table>
+            <div class="responsive-table-wrapper">
+              <table>
+                <tbody>
+                  <tr><th>Dálkový ovladač pro 1 roletu</th><td><input type="number" placeholder="Počet ks"></td></tr>
+                  <tr><th>Dálkový ovladač až pro 5 rolet</th><td><input type="number" placeholder="Počet ks"></td></tr>
+                  <tr><th>Dálkový ovladač až pro 15 roletu</th><td><input type="number" placeholder="Počet ks"></td></tr>
+                  <tr><th>Dálkový ovladač na zeď</th><td><input type="number" placeholder="Počet ks"></td></tr>
+                  <tr><th>Smart Hub</th><td><input type="number" placeholder="Počet ks"></td></tr>
+                </tbody>
+              </table>
+            </div>
           </div>
 
           <select><option>Předvrtání vodících lišt</option><option>Do okna</option><option>Do špalety</option><option>Bez předvrtání</option></select>
@@ -284,7 +348,8 @@
           <div class="checkbox"><input type="checkbox" required><label>Souhlasím se zpracováním osobních údajů</label></div>
           <button type="submit" class="cta">Odeslat poptávku</button>
         </form>
-      </div> </section>
+      </div>
+    </section>
 
     <section id="contact">
       <h2>Kontakt</h2>
