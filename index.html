@@ -231,60 +231,60 @@
 
     <section id="form">
       <h2>Poptávkový formulář</h2>
-      <div class="color-preview">
-        <img src="barvyumisteni.jpg" alt="Umístění barev na roletě">
-        <div class="mini-colors">
-          <div><img src="stribrna.jpg" alt="Stříbrná"><p>Stříbrná</p></div>
-          <div><img src="bila.jpg" alt="Bílá"><p>Bílá</p></div>
-          <div><img src="hneda.jpg" alt="Hnědá"><p>Hnědá</p></div>
-          <div><img src="tmavehneda.jpg" alt="Tmavě hnědá"><p>Tm. hnědá</p></div>
-          <div><img src="antracit.jpg" alt="Antracit"><p>Antracit</p></div>
-          <div><img src="zlatydub.jpg" alt="Zlatý dub"><p>Zlatý dub</p></div>
-        </div>
-      </div>
-
-      <form>
-        <div class="form-row">
-          <input type="text" placeholder="Jméno a příjmení" required>
-          <input type="email" placeholder="E-mail" required>
-          <input type="tel" placeholder="Telefon" required>
-        </div>
-
-        <div id="roles-container">
-          <div class="form-row">
-            <input type="number" placeholder="Šířka (mm)" required>
-            <input type="number" placeholder="Výška (mm)" required>
-            <input type="number" placeholder="Počet ks" required>
-            <select><option>Barva boxu</option><option>Stříbrná</option><option>Bílá</option><option>Hnědá</option><option>Tm. hnědá</option><option>Antracit</option><option>Zlatý dub</option></select>
-            <select><option>Barva vodítek</option><option>Stříbrná</option><option>Bílá</option><option>Hnědá</option><option>Tm. hnědá</option><option>Antracit</option><option>Zlatý dub</option></select>
-            <select><option>Barva pancíře</option><option>Stříbrná</option><option>Bílá</option><option>Hnědá</option><option>Tm. hnědá</option><option>Antracit</option><option>Zlatý dub</option></select>
-            <select><option>Barva koncové lišty</option><option>Stříbrná</option><option>Bílá</option><option>Hnědá</option><option>Tm. hnědá</option><option>Antracit</option><option>Zlatý dub</option></select>
+      <div class="card"> <div class="color-preview">
+          <img src="barvyumisteni.jpg" alt="Umístění barev na roletě">
+          <div class="mini-colors">
+            <div><img src="stribrna.jpg" alt="Stříbrná"><p>Stříbrná</p></div>
+            <div><img src="bila.jpg" alt="Bílá"><p>Bílá</p></div>
+            <div><img src="hneda.jpg" alt="Hnědá"><p>Hnědá</p></div>
+            <div><img src="tmavehneda.jpg" alt="Tmavě hnědá"><p>Tm. hnědá</p></div>
+            <div><img src="antracit.jpg" alt="Antracit"><p>Antracit</p></div>
+            <div><img src="zlatydub.jpg" alt="Zlatý dub"><p>Zlatý dub</p></div>
           </div>
         </div>
 
-        <button type="button" id="add-role" class="cta" style="margin-top:12px;background:linear-gradient(135deg,var(--gold),var(--orange));">+ Přidat další roletu</button>
+        <form>
+          <div class="form-row">
+            <input type="text" placeholder="Jméno a příjmení" required>
+            <input type="email" placeholder="E-mail" required>
+            <input type="tel" placeholder="Telefon" required>
+          </div>
 
-        <h3 style="margin-top:18px">Ovladače</h3>
-        <div class="card">
-          <table>
-            <tbody>
-              <tr><th>Dálkový ovladač pro 1 roletu</th><td><input type="number" placeholder="Počet ks"></td></tr>
-              <tr><th>Dálkový ovladač až pro 5 rolet</th><td><input type="number" placeholder="Počet ks"></td></tr>
-              <tr><th>Dálkový ovladač až pro 15 roletu</th><td><input type="number" placeholder="Počet ks"></td></tr>
-              <tr><th>Dálkový ovladač na zeď</th><td><input type="number" placeholder="Počet ks"></td></tr>
-              <tr><th>Smart Hub</th><td><input type="number" placeholder="Počet ks"></td></tr>
-            </tbody>
-          </table>
-        </div>
+          <div id="roles-container">
+            <div class="form-row">
+              <input type="number" placeholder="Šířka (mm)" required>
+              <input type="number" placeholder="Výška (mm)" required>
+              <input type="number" placeholder="Počet ks" required>
+              <select><option>Barva boxu</option><option>Stříbrná</option><option>Bílá</option><option>Hnědá</option><option>Tm. hnědá</option><option>Antracit</option><option>Zlatý dub</option></select>
+              <select><option>Barva vodítek</option><option>Stříbrná</option><option>Bílá</option><option>Hnědá</option><option>Tm. hnědá</option><option>Antracit</option><option>Zlatý dub</option></select>
+              <select><option>Barva pancíře</option><option>Stříbrná</option><option>Bílá</option><option>Hnědá</option><option>Tm. hnědá</option><option>Antracit</option><option>Zlatý dub</option></select>
+              <select><option>Barva koncové lišty</option><option>Stříbrná</option><option>Bílá</option><option>Hnědá</option><option>Tm. hnědá</option><option>Antracit</option><option>Zlatý dub</option></select>
+            </div>
+          </div>
 
-        <select><option>Předvrtání vodících lišt</option><option>Do okna</option><option>Do špalety</option><option>Bez předvrtání</option></select>
+          <button type="button" id="add-role" class="cta" style="margin-top:12px;background:linear-gradient(135deg,var(--gold),var(--orange));">+ Přidat další roletu</button>
 
-        <textarea rows="3" placeholder="Další poznámky nebo upřesnění..."></textarea>
+          <h3 style="margin-top:18px">Ovladače</h3>
+          <div class="card">
+            <table>
+              <tbody>
+                <tr><th>Dálkový ovladač pro 1 roletu</th><td><input type="number" placeholder="Počet ks"></td></tr>
+                <tr><th>Dálkový ovladač až pro 5 rolet</th><td><input type="number" placeholder="Počet ks"></td></tr>
+                <tr><th>Dálkový ovladač až pro 15 roletu</th><td><input type="number" placeholder="Počet ks"></td></tr>
+                <tr><th>Dálkový ovladač na zeď</th><td><input type="number" placeholder="Počet ks"></td></tr>
+                <tr><th>Smart Hub</th><td><input type="number" placeholder="Počet ks"></td></tr>
+              </tbody>
+            </table>
+          </div>
 
-        <div class="checkbox"><input type="checkbox" required><label>Souhlasím se zpracováním osobních údajů</label></div>
-        <button type="submit" class="cta">Odeslat poptávku</button>
-      </form>
-    </section>
+          <select><option>Předvrtání vodících lišt</option><option>Do okna</option><option>Do špalety</option><option>Bez předvrtání</option></select>
+
+          <textarea rows="3" placeholder="Další poznámky nebo upřesnění..."></textarea>
+
+          <div class="checkbox"><input type="checkbox" required><label>Souhlasím se zpracováním osobních údajů</label></div>
+          <button type="submit" class="cta">Odeslat poptávku</button>
+        </form>
+      </div> </section>
 
     <section id="contact">
       <h2>Kontakt</h2>
