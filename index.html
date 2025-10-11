@@ -33,6 +33,14 @@
     .cta{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#1a1e27;font-weight:700;border:none;cursor:pointer;box-shadow:var(--shadow)}
     .cta:hover{transform:translateY(-1px)}
 
+    /* Posun při kliknutí na odkaz */
+    :target::before {
+      content: "";
+      display: block;
+      height: 100px; /* výška posunu */
+      margin-top: -100px;
+    }
+
     /* Hero */
     .hero{margin-top:40px;display:grid;grid-template-columns:1.1fr 0.9fr;align-items:center;gap:28px}
     @media(max-width:850px){.hero{grid-template-columns:1fr}}
