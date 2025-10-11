@@ -305,22 +305,22 @@
           </div>
         </div>
 
-        <form>
+        <form action="formular.php" method="POST">
           <div class="form-row">
-            <input type="text" placeholder="Jméno a příjmení" required>
-            <input type="email" placeholder="E-mail" required>
-            <input type="tel" placeholder="Telefon" required>
+            <input type="text" name="jmeno" placeholder="Jméno a příjmení" required>
+            <input type="email" name="email" placeholder="E-mail" required>
+            <input type="tel" name="telefon" placeholder="Telefon" required>
           </div>
 
           <div id="roles-container">
             <div class="form-row">
-              <input type="number" placeholder="Šířka (mm)" required>
-              <input type="number" placeholder="Výška (mm)" required>
-              <input type="number" placeholder="Počet ks" required>
-              <select><option>Barva boxu</option><option>Stříbrná</option><option>Bílá</option><option>Hnědá</option><option>Tm. hnědá</option><option>Antracit</option><option>Zlatý dub</option></select>
-              <select><option>Barva vodítek</option><option>Stříbrná</option><option>Bílá</option><option>Hnědá</option><option>Tm. hnědá</option><option>Antracit</option><option>Zlatý dub</option></select>
-              <select><option>Barva pancíře</option><option>Stříbrná</option><option>Bílá</option><option>Hnědá</option><option>Tm. hnědá</option><option>Antracit</option><option>Zlatý dub</option></select>
-              <select><option>Barva koncové lišty</option><option>Stříbrná</option><option>Bílá</option><option>Hnědá</option><option>Tm. hnědá</option><option>Antracit</option><option>Zlatý dub</option></select>
+              <input type="number" name="sirka[]" placeholder="Šířka (mm)" required>
+              <input type="number" name="vyska[]" placeholder="Výška (mm)" required>
+              <input type="number" name="pocet[]" placeholder="Počet ks" required>
+              <select name="barva_boxu[]"><option value="">Barva boxu</option><option>Stříbrná</option><option>Bílá</option><option>Hnědá</option><option>Tm. hnědá</option><option>Antracit</option><option>Zlatý dub</option></select>
+              <select name="barva_voditek[]"><option value="">Barva vodítek</option><option>Stříbrná</option><option>Bílá</option><option>Hnědá</option><option>Tm. hnědá</option><option>Antracit</option><option>Zlatý dub</option></select>
+              <select name="barva_pancire[]"><option value="">Barva pancíře</option><option>Stříbrná</option><option>Bílá</option><option>Hnědá</option><option>Tm. hnědá</option><option>Antracit</option><option>Zlatý dub</option></select>
+              <select name="barva_listy[]"><option value="">Barva koncové lišty</option><option>Stříbrná</option><option>Bílá</option><option>Hnědá</option><option>Tm. hnědá</option><option>Antracit</option><option>Zlatý dub</option></select>
             </div>
           </div>
 
@@ -331,21 +331,21 @@
             <div class="responsive-table-wrapper">
               <table>
                 <tbody>
-                  <tr><th>Dálkový ovladač pro 1 roletu</th><td><input type="number" placeholder="Počet ks"></td></tr>
-                  <tr><th>Dálkový ovladač až pro 5 rolet</th><td><input type="number" placeholder="Počet ks"></td></tr>
-                  <tr><th>Dálkový ovladač až pro 15 roletu</th><td><input type="number" placeholder="Počet ks"></td></tr>
-                  <tr><th>Dálkový ovladač na zeď</th><td><input type="number" placeholder="Počet ks"></td></tr>
-                  <tr><th>Smart Hub</th><td><input type="number" placeholder="Počet ks"></td></tr>
+                  <tr><th>Dálkový ovladač pro 1 roletu</th><td><input type="number" name="ovladac_1" placeholder="Počet ks"></td></tr>
+                  <tr><th>Dálkový ovladač až pro 5 rolet</th><td><input type="number" name="ovladac_5" placeholder="Počet ks"></td></tr>
+                  <tr><th>Dálkový ovladač až pro 15 roletu</th><td><input type="number" name="ovladac_15" placeholder="Počet ks"></td></tr>
+                  <tr><th>Dálkový ovladač na zeď</th><td><input type="number" name="ovladac_zed" placeholder="Počet ks"></td></tr>
+                  <tr><th>Smart Hub</th><td><input type="number" name="smart_hub" placeholder="Počet ks"></td></tr>
                 </tbody>
               </table>
             </div>
           </div>
 
-          <select><option>Předvrtání vodících lišt</option><option>Do okna</option><option>Do špalety</option><option>Bez předvrtání</option></select>
+          <select name="predvrtani"><option value="">Předvrtání vodících lišt</option><option>Do okna</option><option>Do špalety</option><option>Bez předvrtání</option></select>
 
-          <textarea rows="3" placeholder="Další poznámky nebo upřesnění..."></textarea>
+          <textarea rows="3" name="poznamky" placeholder="Další poznámky nebo upřesnění..."></textarea>
 
-          <div class="checkbox"><input type="checkbox" required><label>Souhlasím se zpracováním osobních údajů</label></div>
+          <div class="checkbox"><input type="checkbox" name="souhlas" required><label>Souhlasím se zpracováním osobních údajů</label></div>
           <button type="submit" class="cta">Odeslat poptávku</button>
         </form>
       </div>
@@ -373,7 +373,8 @@
     document.getElementById('add-role').addEventListener('click', () => {
       const container = document.getElementById('roles-container');
       const first = container.firstElementChild.cloneNode(true);
-      first.querySelectorAll('input,select').forEach(el => el.value='');
+      // Reset hodnot v nově přidaném řádku
+      first.querySelectorAll('input,select').forEach(el => el.value = el.tagName === 'SELECT' ? '' : '');
       container.appendChild(first);
     });
     // Rok do patičky

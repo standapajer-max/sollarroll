@@ -1,0 +1,22 @@
+/
+├── index.html          (Hlavní stránka webu s upraveným formulářem pro PHP)
+├── formular.php        (PHP skript pro zpracování dat a odeslání e-mailu)
+├── dekujeme.html       (Stránka s poděkováním po úspěšném odeslání)
+├── chyba.html          (Stránka pro případ chyby odeslání formuláře)
+|
+├── logo_svet_rolet.png (Logo v hlavičce a favicon)
+├── roletarez.jpg       (Obrázek řezu v sekci HERO)
+├── vzor.jpg            (Obrázek vzorové kalkulace)
+├── barvyumisteni.jpg   (Obrázek umístění barev ve formuláři)
+|
+├── stribrna.jpg        (Vzorek barvy + v sekci Barvy)
+├── bila.jpg            (Vzorek barvy + v sekci Barvy)
+├── hneda.jpg           (Vzorek barvy + v sekci Barvy)
+├── tmavehneda.jpg      (Vzorek barvy + v sekci Barvy)
+├── antracit.jpg        (Vzorek barvy + v sekci Barvy)
+├── zlatydub.jpg        (Vzorek barvy + v sekci Barvy)
+|
+├── paneldum.png        (Obrázek v Galerii)
+├── roh.png             (Obrázek v Galerii)
+├── rd.png              (Obrázek v Galerii)
+└── panelbrown.png      (Obrázek v Galerii)
