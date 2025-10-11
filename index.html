@@ -20,19 +20,28 @@
       --radius:18px;
     }
     *{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.6}
+    body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.6;scroll-behavior:smooth;}
     a{color:var(--gold)}
     .wrap{max-width:1200px;margin:0 auto;padding:24px}
 
+    /* Navigace */
     header.nav{position:sticky;top:0;z-index:50;background:#0b0e13d9;backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.1);padding:10px 0;}
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:40px}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:700;}
-    .brand img{width:54px;height:54px;border-radius:50%;}
-    .brand span{font-size:22px;}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:48px}
+    .brand{display:flex;align-items:center;gap:16px;font-weight:700;}
+    .brand img{width:90px;height:90px;border-radius:50%;transition:transform 0.3s ease;}
+    .brand img:hover{transform:scale(1.05);}
+    .brand span{font-size:32px;font-weight:800;letter-spacing:0.8px;}
+    .actions{display:flex;gap:32px;align-items:center;}
     .cta{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#1a1e27;font-weight:700;border:none;cursor:pointer;box-shadow:var(--shadow)}
     .cta:hover{transform:translateY(-1px)}
 
-    /* Hero */
+    :target::before {
+      content: "";
+      display: block;
+      height: 120px;
+      margin-top: -120px;
+    }
+
     .hero{margin-top:40px;display:grid;grid-template-columns:1.1fr 0.9fr;align-items:center;gap:28px}
     @media(max-width:850px){.hero{grid-template-columns:1fr}}
     .hero h1{font-size:clamp(28px,4vw,46px);margin-bottom:12px}
@@ -46,27 +55,48 @@
     section{margin:56px 0}
     h2{font-size:clamp(22px,3vw,32px);margin-bottom:10px}
     .section-lead{color:var(--muted);margin-bottom:24px}
-
     .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
 
-    /* Specifikace */
     table{width:100%;border-collapse:collapse}
     th,td{padding:10px 12px;border-bottom:1px dashed rgba(255,255,255,.08);text-align:left}
     th{color:var(--muted)}
 
-    /* Barvy */
-    .color-sample{width:22px;height:22px;border-radius:4px;display:inline-block;border:1px solid rgba(255,255,255,.2);}
+    .colors{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:24px;margin-top:24px;text-align:center}
+    .colors img{width:100%;height:140px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow)}
+    .colors p{margin-top:8px;color:var(--muted)}
 
-    /* Galerie */
+    /* Ovládací prvky */
+    .controls-list ul{list-style:disc;padding-left:22px;color:var(--muted);}
+    .controls-list li{margin-bottom:8px;}
+
+    .calc{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:32px;background:var(--card);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.08);}
+    @media(max-width:850px){.calc{grid-template-columns:1fr;text-align:center}}
+    .calc img{width:100%;max-width:320px;margin:auto;border-radius:12px;}
+    .calc-details h3{color:var(--gold);margin-bottom:10px}
+    .calc-details ul{list-style:none;margin:0 0 16px;padding:0}
+    .calc-details li{margin-bottom:6px;color:var(--muted)}
+    .price-old{text-decoration:line-through;color:var(--muted);font-size:18px;}
+    .discount{display:inline-block;background:linear-gradient(135deg,var(--orange),var(--gold-2));color:#1a1e27;padding:6px 14px;border-radius:8px;font-weight:700;margin:10px 0;}
+    .price-new{font-size:24px;font-weight:700;color:var(--gold-2);}
+    .price-new small{font-size:16px;color:var(--muted);display:block}
+
     .gallery{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));margin-top:24px}
     .gallery img{width:100%;height:200px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow)}
 
     /* Formulář */
-    form{margin-top:20px}
-    .form-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));}
-    input,select,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:#1a1e27;color:var(--text)}
-    input:focus,select:focus,textarea:focus{outline:1px solid var(--gold)}
-    label{font-weight:600;display:block;margin-bottom:4px}
+    .quote-form {background: var(--card);padding: 32px;border-radius: var(--radius);box-shadow: var(--shadow);border: 1px solid rgba(255,255,255,.08);}
+    .form-grid {display: grid;grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));gap: 20px;}
+    .form-grid .full {grid-column: 1 / -1;}
+    label {display: block;font-weight: 600;margin-bottom: 6px;color: var(--text);}
+    input, select, textarea {width: 100%;padding: 10px 12px;border-radius: 8px;border: 1px solid rgba(255,255,255,.1);background: #1a1f2b;color: var(--text);font-size: 16px;}
+    input:focus, select:focus, textarea:focus {outline: none;border-color: var(--gold);box-shadow: 0 0 0 2px rgba(202,166,106,.2);}
+    .checkbox label {display: flex;align-items: center;gap: 8px;font-size: 14px;color: var(--muted);}
+    button.cta {margin-top: 20px;padding: 14px 26px;font-size: 18px;}
+    .role-row {display: grid;grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));gap: 10px;margin-bottom: 12px;}
+
+    .color-preview {display: flex;flex-wrap: wrap;gap: 10px;margin-bottom: 16px;}
+    .color-preview div {display:flex;align-items:center;gap:6px;}
+    .color-sample {width:20px;height:20px;border-radius:4px;border:1px solid #555;}
 
     footer{margin-top:72px;padding:28px 0;color:var(--muted);border-top:1px solid rgba(255,255,255,.06);text-align:center}
   </style>
@@ -80,14 +110,13 @@
       </div>
       <div class="actions">
         <a href="#specs" class="btn">Technické parametry</a>
-        <a href="#form" class="cta">Chci nezávaznou nabídku</a>
+        <a href="#form" class="cta">Chci poptávku</a>
       </div>
     </div>
   </header>
 
   <main class="wrap">
-
-    <!-- HERO -->
+    <!-- Hero -->
     <section class="hero">
       <div>
         <h1>Nezávislá solární roleta pro Váš stín, klid a bezpečí</h1>
@@ -97,7 +126,7 @@
       <img src="roleta řez.jpg" alt="Řez solární roletou SollarRoll" loading="lazy">
     </section>
 
-    <!-- TECH PARAMETRY -->
+    <!-- Technické parametry -->
     <section id="specs">
       <h2>Technické parametry</h2>
       <div class="card">
@@ -106,7 +135,7 @@
             <tr><th>Napájení</th><td>Solární panel + akumulátor – vše je již součástí rolety</td></tr>
             <tr><th>Ovládání</th><td>Dálkové nebo mobilní aplikace</td></tr>
             <tr><th>Lamely</th><td>Hliníkové lamely vyplněné PUR pěnou, povrchová úprava práškové lakování</td></tr>
-            <tr><th>Vodicí lišty</th><td>Hliníkové vodicí lišty, šířka 53 nebo 68 mm</td></tr>
+            <tr><th>Vodící lišty</th><td>Hliníkové vodící lišty, šířka 53 nebo 68 mm</td></tr>
             <tr><th>Boxy rolet</th><td>Hliníkové boxy 150, 165, 180 nebo 205 mm s práškovým lakováním</td></tr>
             <tr><th>Výroba</th><td>Rolety vyrábíme individuálně dle Vámi zadaného rozměru</td></tr>
             <tr><th>Záruka</th><td>24 měsíců</td></tr>
@@ -115,92 +144,149 @@
       </div>
     </section>
 
-    <!-- OVLÁDACÍ PRVKY -->
+    <!-- Barvy -->
+    <section id="colors">
+      <h2>Barevné provedení</h2>
+      <p class="section-lead">Vyberte si z oblíbených barevných variant, které ladí s moderní architekturou.</p>
+      <div class="colors">
+        <div><img src="stříbrná.jpg" alt="Stříbrná"><p>Stříbrná</p></div>
+        <div><img src="bílá.jpg" alt="Bílá"><p>Bílá</p></div>
+        <div><img src="hnědá.jpg" alt="Hnědá RAL 8014"><p>Hnědá RAL 8014</p></div>
+        <div><img src="tmavě hnědá.jpg" alt="Tmavě hnědá RAL 8019"><p>Tmavě hnědá RAL 8019</p></div>
+        <div><img src="antracit.jpg" alt="Antracit RAL 7016"><p>Antracit RAL 7016</p></div>
+        <div><img src="zlatý dub.jpg" alt="Dřevodekor Zlatý dub"><p>Dřevodekor Zlatý dub</p></div>
+      </div>
+    </section>
+
+    <!-- Nová sekce Ovládací prvky -->
     <section id="controls">
       <h2>Ovládací prvky</h2>
-      <p class="section-lead">Zvolte si způsob ovládání podle svých potřeb.</p>
-      <div class="card">
+      <div class="card controls-list">
         <ul>
           <li>Dálkový ovladač pro 1 roletu</li>
-          <li>Dálkový ovladač až pro 5 rolet s možností časování (nastavíte automatické zavírání/otvírání)</li>
+          <li>Dálkový ovladač až pro 5 rolet s možností časování (nastavíte si automatické zavírání/otvírání rolety)</li>
           <li>Dálkový ovladač až pro 15 rolet</li>
-          <li>Nástěnný ovladač pro 1 roletu (tlačítko na zeď)</li>
-          <li>SmartHub – ovládání rolet přes aplikaci (nutná Wi-Fi a internet)</li>
+          <li>Dálkový ovladač pro jednu roletu (tlačítko na zeď)</li>
+          <li>Smart Hub – zařízení pro ovládání rolet přes aplikaci (nutná Wi-Fi a internet v místě instalace rolet)</li>
         </ul>
       </div>
     </section>
 
-    <!-- BAREVNÉ PROVEDENÍ -->
-    <section id="colors">
-      <h2>Barevné provedení</h2>
-      <p class="section-lead">Vyberte barvy jednotlivých částí rolety:</p>
-
-      <div style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:24px;justify-content:center;">
-        <figure style="flex:1 1 280px;text-align:center;margin:0;">
-          <img src="barvyumisteni.jpg" alt="Umístění barev" style="width:100%;max-width:320px;border-radius:12px;border:1px solid rgba(255,255,255,.12);box-shadow:0 4px 20px rgba(0,0,0,0.35);opacity:0.95;">
-          <figcaption style="margin-top:6px;font-size:14px;color:var(--muted);">Umístění barev na roletě</figcaption>
-        </figure>
-
-        <div style="flex:1 1 260px;display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px;">
-          <div style="display:flex;align-items:center;gap:8px;"><span class="color-sample" style="background:#c0c0c0"></span><span>Stříbrná</span></div>
-          <div style="display:flex;align-items:center;gap:8px;"><span class="color-sample" style="background:#fff;border:1px solid #ccc"></span><span>Bílá</span></div>
-          <div style="display:flex;align-items:center;gap:8px;"><span class="color-sample" style="background:#3d2b1f"></span><span>Hnědá RAL8014</span></div>
-          <div style="display:flex;align-items:center;gap:8px;"><span class="color-sample" style="background:#2b2622"></span><span>Tmavě hnědá RAL8019</span></div>
-          <div style="display:flex;align-items:center;gap:8px;"><span class="color-sample" style="background:#383e42"></span><span>Antracit RAL7016</span></div>
-          <div style="display:flex;align-items:center;gap:8px;"><span class="color-sample" style="background:#b8860b"></span><span>Zlatý dub</span></div>
+    <!-- Kalkulace -->
+    <section id="calc">
+      <h2>Vzorová kalkulace</h2>
+      <p class="section-lead">Příklad individuálně vyrobené rolety SollarRoll s kompletní výbavou.</p>
+      <div class="calc">
+        <img src="vzor.jpg" alt="Solární roleta SollarRoll – vzorová kalkulace">
+        <div class="calc-details">
+          <h3>Solární roleta SollarRoll</h3>
+          <ul>
+            <li>Rozměr: <strong>1750 × 1450 mm</strong></li>
+            <li>Barevné provedení: <strong>Stříbrná</strong></li>
+            <li>Pohon: <strong>Solární motor</strong></li>
+            <li>Ovládání: <strong>Dálkový ovladač pro 1 roletu</strong></li>
+          </ul>
+          <div class="price-old">22 144 Kč bez DPH (26 474,24 Kč s DPH)</div>
+          <div class="discount">AKCE –35% SLEVA</div>
+          <div class="price-new">14 394 Kč bez DPH<small>(17 416,74 Kč s DPH)</small></div>
         </div>
       </div>
     </section>
 
-    <!-- FORMULÁŘ -->
+    <!-- Formulář -->
     <section id="form">
       <h2>Nezávazná poptávka</h2>
-      <p class="section-lead">Vyplňte údaje pro přesnou kalkulaci:</p>
+      <p class="section-lead">Vyplňte údaje a my vám připravíme přesnou cenovou nabídku na míru.</p>
 
-      <form id="quoteForm" action="https://formspree.io/f/XXXXYYYY" method="POST">
-        <input type="hidden" name="_subject" value="Nová poptávka – Svět rolet">
-        <input type="hidden" name="_redirect" value="dekujeme.html">
-
+      <form class="quote-form" action="#" method="post">
         <div class="form-grid">
-          <div><label>Jméno a příjmení *</label><input type="text" name="name" required></div>
-          <div><label>E-mail *</label><input type="email" name="email" required></div>
-          <div><label>Telefon *</label><input type="tel" name="phone" required></div>
-        </div>
+          <div><label for="name">Jméno a příjmení *</label><input type="text" id="name" required></div>
+          <div><label for="email">E-mail *</label><input type="email" id="email" required></div>
+          <div><label for="phone">Telefon *</label><input type="tel" id="phone" required></div>
 
-        <div class="full" style="margin-top:20px;">
-          <label>Specifikace rolet *</label>
-          <div id="roles">
-            <div class="form-grid role-row">
-              <input type="number" name="width[]" placeholder="Šířka (mm)" required>
-              <input type="number" name="height[]" placeholder="Výška (mm)" required>
-              <input type="number" name="count[]" placeholder="Počet ks" required>
+          <!-- PŘEHLED BAREV -->
+          <div class="full">
+            <label>Možnosti barev</label>
+            <div class="color-preview">
+              <div><span class="color-sample" style="background:#c0c0c0"></span>Stříbrná</div>
+              <div><span class="color-sample" style="background:#ffffff"></span>Bílá</div>
+              <div><span class="color-sample" style="background:#3d2b1f"></span>Hnědá 8014</div>
+              <div><span class="color-sample" style="background:#2b2622"></span>Tmavě hnědá 8019</div>
+              <div><span class="color-sample" style="background:#383e42"></span>Antracit 7016</div>
+              <div><span class="color-sample" style="background:#b8860b"></span>Zlatý dub</div>
             </div>
+            <img src="barvyumisteni.jpg" alt="Umístění barev na roletě" style="width:100%;max-width:600px;border-radius:12px;margin:10px 0;box-shadow:var(--shadow)">
           </div>
-          <button type="button" onclick="addRole()" style="margin-top:10px;padding:8px 14px;border:none;border-radius:8px;background:var(--gold);color:#1a1e27;font-weight:700;cursor:pointer;">+ Přidat další roletu</button>
-        </div>
 
-        <div><label>Předvrtání vodicích lišt</label>
-          <select name="predvrtani">
-            <option>Do okna</option>
-            <option>Do špalety</option>
-            <option>Bez předvrtání</option>
-          </select>
-        </div>
+          <!-- Specifikace rolet -->
+          <div class="full">
+            <label>Specifikace rolet *</label>
+            <div id="roles-container">
+              <div class="role-row">
+                <input type="number" name="width[]" placeholder="Šířka (mm)" required>
+                <input type="number" name="height[]" placeholder="Výška (mm)" required>
+                <input type="number" name="count[]" placeholder="Ks" required>
+                <select name="box-color[]" required>
+                  <option value="">Box</option>
+                  <option>Stříbrná</option>
+                  <option>Bílá</option>
+                  <option>Hnědá RAL 8014</option>
+                  <option>Tmavě hnědá RAL 8019</option>
+                  <option>Antracit RAL 7016</option>
+                  <option>Zlatý dub (dřevodekor)</option>
+                </select>
+                <select name="guide-color[]" required>
+                  <option value="">Lišty</option>
+                  <option>Stříbrná</option>
+                  <option>Bílá</option>
+                  <option>Hnědá RAL 8014</option>
+                  <option>Tmavě hnědá RAL 8019</option>
+                  <option>Antracit RAL 7016</option>
+                  <option>Zlatý dub (dřevodekor)</option>
+                </select>
+                <select name="slats-color[]" required>
+                  <option value="">Pancíř</option>
+                  <option>Stříbrná</option>
+                  <option>Bílá</option>
+                  <option>Hnědá RAL 8014</option>
+                  <option>Tmavě hnědá RAL 8019</option>
+                  <option>Antracit RAL 7016</option>
+                  <option>Zlatý dub (dřevodekor)</option>
+                </select>
+                <select name="bottom-color[]" required>
+                  <option value="">Koncovka</option>
+                  <option>Stříbrná</option>
+                  <option>Bílá</option>
+                  <option>Hnědá RAL 8014</option>
+                  <option>Tmavě hnědá RAL 8019</option>
+                  <option>Antracit RAL 7016</option>
+                  <option>Zlatý dub (dřevodekor)</option>
+                </select>
+                <select name="drilling[]" required>
+                  <option value="">Předvrtání</option>
+                  <option>Do okna</option>
+                  <option>Do špalety</option>
+                  <option>Bez předvrtání</option>
+                </select>
+              </div>
+            </div>
+            <button type="button" id="add-role" class="cta" style="margin-top:12px;background:linear-gradient(135deg,var(--gold),var(--orange));">+ Přidat další roletu</button>
+          </div>
 
-        <div class="full" style="margin-top:20px;">
-          <h3>Ovládací prvky</h3>
-          <table style="width:100%;border-collapse:collapse;font-size:15px;margin-top:10px;">
-            <tr><th align="left">Typ ovladače</th><th>Počet ks</th></tr>
-            <tr><td>Dálkový ovladač pro 1 roletu</td><td><input type="number" name="ovl_1" min="0" style="width:70px;"></td></tr>
-            <tr><td>Dálkový ovladač až pro 5 rolet (časování)</td><td><input type="number" name="ovl_5" min="0" style="width:70px;"></td></tr>
-            <tr><td>Dálkový ovladač až pro 15 rolet</td><td><input type="number" name="ovl_15" min="0" style="width:70px;"></td></tr>
-            <tr><td>Nástěnný ovladač pro 1 roletu</td><td><input type="number" name="ovl_wall" min="0" style="width:70px;"></td></tr>
-            <tr><td>SmartHub (mobilní ovládání)</td><td><input type="number" name="ovl_hub" min="0" style="width:70px;"></td></tr>
-          </table>
-        </div>
+          <div class="full">
+            <label for="controllers">Upřesnění počtu ovladačů</label>
+            <textarea id="controllers" rows="2" placeholder="Např. 2× ovladač pro 1 roletu, 1× pro 5 rolet s časovačem"></textarea>
+          </div>
 
-        <div class="full"><label>Poznámka</label><textarea name="poznamka" rows="3" placeholder="Doplňující informace..."></textarea></div>
-        <div class="full"><label><input type="checkbox" required> Souhlasím se zpracováním osobních údajů pro účely nabídky.</label></div>
+          <div class="full">
+            <label for="note">Poznámka</label>
+            <textarea id="note" rows="3" placeholder="Sem můžete napsat další požadavky..."></textarea>
+          </div>
+
+          <div class="full checkbox">
+            <label><input type="checkbox" required> Souhlasím se zpracováním osobních údajů pro účely poptávky.</label>
+          </div>
+        </div>
 
         <button type="submit" class="cta">Odeslat poptávku</button>
       </form>
@@ -223,18 +309,13 @@
   </footer>
 
   <script>
+    document.getElementById('add-role').addEventListener('click', function() {
+      const container = document.getElementById('roles-container');
+      const clone = container.firstElementChild.cloneNode(true);
+      clone.querySelectorAll('input, select').forEach(el => el.value = '');
+      container.appendChild(clone);
+    });
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    function addRole() {
-      const roles = document.getElementById('roles');
-      const row = document.createElement('div');
-      row.className = 'form-grid role-row';
-      row.innerHTML = `
-        <input type="number" name="width[]" placeholder="Šířka (mm)" required>
-        <input type="number" name="height[]" placeholder="Výška (mm)" required>
-        <input type="number" name="count[]" placeholder="Počet ks" required>`;
-      roles.appendChild(row);
-    }
   </script>
 </body>
 </html>
