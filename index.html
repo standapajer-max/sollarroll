@@ -8,103 +8,124 @@
   <meta name="theme-color" content="#0b0e13" />
   <link rel="icon" href="logo_svet_rolet.png" type="image/png" />
   <style>
-    :root {
-      --bg: #0b0e13;
-      --card: #121722;
-      --muted: #8892a6;
-      --text: #f5f7fb;
-      --gold: #caa66a;
-      --gold-2: #f0d28a;
-      --orange: #f5b35d;
-      --shadow: 0 10px 30px rgba(0, 0, 0, .35);
-      --radius: 18px;
+    :root{
+      --bg:#0b0e13;
+      --card:#121722;
+      --muted:#8892a6;
+      --text:#f5f7fb;
+      --gold:#caa66a;
+      --gold-2:#f0d28a;
+      --orange:#f5b35d;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --radius:18px;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; line-height: 1.6; }
-    a { color: var(--gold); text-decoration: none; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.6}
+    a{color:var(--gold)}
+    .wrap{max-width:1200px;margin:0 auto;padding:24px}
 
-    .wrap { max-width: 1200px; margin: 0 auto; padding: 24px; }
+    /* ÚPRAVA PRO SMART STICKY HEADER */
+    header.nav{position:fixed;top:0;width:100%;z-index:50;background:#0b0e13d9;backdrop-filter:blur(8px);
+      border-bottom:1px solid rgba(255,255,255,.1);padding:10px 0;
+      /* Přidáno pro animaci skrývání/objevování */
+      transform:translateY(0);transition:transform 0.3s ease-out;}
+    /* Třída pro skrytí */
+    .nav-hidden{transform:translateY(-100%);}
 
-    header.nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: #f5f7fb;
-      color: #0b0e13;
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(0, 0, 0, .1);
-      padding: 10px 0;
-      transition: top 0.4s ease;
-    }
-    header.nav.hidden { top: -120px; }
-    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
-    .brand { display: flex; align-items: center; gap: 16px; font-weight: 700; color: #0b0e13; }
-    .brand img { width: 90px; height: 90px; border-radius: 50%; transition: transform 0.3s ease; }
-    .brand img:hover { transform: scale(1.05); }
-    .brand span { font-size: 32px; font-weight: 800; letter-spacing: 0.8px; }
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:48px}
+    .brand{display:flex;align-items:center;gap:16px;font-weight:700;}
+    .brand img{width:90px;height:90px;border-radius:50%;transition:transform 0.3s ease;}
+    .brand img:hover{transform:scale(1.05);}
+    .brand span{font-size:32px;font-weight:800;letter-spacing:0.8px;}
+    .actions{display:flex;gap:22px;align-items:center}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.18);color:var(--gold-2);text-decoration:none}
+    .btn:hover{background:rgba(255,255,255,.06)}
+    .cta{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:999px;
+      background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#1a1e27;font-weight:700;border:none;cursor:pointer;box-shadow:var(--shadow)}
+    .cta:hover{transform:translateY(-1px)}
 
-    .actions a {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 18px;
-      border-radius: 999px;
-      font-weight: 700;
-      border: none;
-      cursor: pointer;
-      box-shadow: var(--shadow);
-      margin-left: 12px;
-    }
-    .actions a:first-child { background: #0b0e13; color: #f5f7fb; }
-    .actions a:last-child { background: linear-gradient(135deg, var(--gold), var(--gold-2)); color: #1a1e27; }
-    .actions a:hover { transform: translateY(-1px); }
+    /* kotvy posun kvůli sticky headeru */
+    :target::before {content:"";display:block;height:100px;margin-top:-100px;} /* Bude upraveno JS */
 
-    section { margin: 56px 0; }
-    h2 { font-size: clamp(22px, 3vw, 32px); margin-bottom: 10px; }
+    /* Hero */
+    .hero{margin-top:40px;display:grid;grid-template-columns:1.1fr 0.9fr;align-items:center;gap:28px}
+    @media(max-width:850px){.hero{grid-template-columns:1fr}}
+    .hero h1{font-size:clamp(28px,4vw,46px);margin-bottom:12px}
+    .hero p.lead{font-size:clamp(16px,2vw,20px);color:var(--muted);margin-bottom:16px}
+    .hero img{width:100%;border-radius:14px;box-shadow:var(--shadow);object-fit:contain;}
 
-    .benefits-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-      margin-top: 30px;
-    }
-    .benefit-card {
-      background: linear-gradient(145deg, #141924, #0f1219);
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: var(--radius);
-      padding: 28px 22px;
-      box-shadow: var(--shadow);
-      transition: all 0.3s ease;
-    }
-    .benefit-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,.45); }
-    .benefit-icon {
-      width: 42px;
-      height: 42px;
-      margin-bottom: 16px;
-      color: var(--gold);
-    }
-    .benefit-card h3 { color: var(--gold-2); font-size: 20px; margin-bottom: 10px; }
-    .benefit-card p { color: var(--muted); font-size: 15px; }
+    /* Nálepka */
+    .badge{position:relative;display:inline-block;background:linear-gradient(135deg,var(--orange),var(--gold-2));
+      color:#1a1e27;font-weight:700;padding:10px 16px;border-radius:12px;box-shadow:var(--shadow);
+      transform:rotate(-4deg);margin-top:12px}
+    .badge small{display:block;font-weight:500;color:#000;font-size:14px;margin-top:2px}
+    .badge::before{content:"🪛";position:absolute;left:-24px;top:6px;font-size:20px}
 
-    .card { background: var(--card); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); border: 1px solid rgba(255,255,255,.08); }
+    /* Sekce */
+    section{margin:56px 0}
+    h2{font-size:clamp(22px,3vw,32px);margin-bottom:10px}
+    .section-lead{color:var(--muted);margin-bottom:24px}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
 
-    .colors img, .gallery img { width: 100%; border-radius: 12px; object-fit: cover; box-shadow: var(--shadow); }
-    .colors { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 24px; text-align: center; }
-    .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; }
+    /* Výhody */
+    .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-top:20px}
+    .feature{background:var(--card);border-radius:var(--radius);padding:20px;text-align:center;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.05);}
+    .feature span{font-size:32px;display:block;margin-bottom:8px;color:var(--gold)}
 
-    footer { margin-top: 72px; padding: 28px 0; color: var(--muted); border-top: 1px solid rgba(255, 255, 255, .06); text-align: center; }
+    /* Specifikace & tabulky */
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:10px 12px;border-bottom:1px dashed rgba(255,255,255,.08);text-align:left}
+    th{color:var(--muted)}
+
+    /* Barvy */
+    .colors{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:24px;margin-top:24px;text-align:center}
+    .colors img{width:100%;height:140px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow)}
+    .colors p{margin-top:8px;color:var(--muted)}
+
+    /* Kalkulace */
+    .calc{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:32px;background:var(--card);
+      border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.08);}
+    @media(max-width:850px){.calc{grid-template-columns:1fr;text-align:center}}
+    .calc img{width:100%;max-width:320px;margin:auto;border-radius:12px;}
+    .calc-details h3{color:var(--gold);margin-bottom:10px}
+    .calc-details ul{list-style:none;margin:0 0 16px;padding:0}
+    .calc-details li{margin-bottom:6px;color:var(--muted)}
+    .price-old{text-decoration:line-through;color:var(--muted);font-size:18px;}
+    .discount{display:inline-block;background:linear-gradient(135deg,var(--orange),var(--gold-2));color:#1a1e27;padding:6px 14px;border-radius:8px;font-weight:700;margin:10px 0;}
+    .price-new{font-size:24px;font-weight:700;color:var(--gold-2);}
+    .price-new small{font-size:16px;color:var(--muted);display:block}
+
+    /* Galerie */
+    .gallery{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));margin-top:24px}
+    .gallery img{width:100%;height:200px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow)}
+
+    /* Formulář */
+    form{display:grid;gap:16px;margin-top:20px}
+    .form-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+    input,select,textarea{width:100%;padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:#1a1e27;color:var(--text)}
+    input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold)}
+    .checkbox{display:flex;align-items:center;gap:8px}
+    .checkbox input{width:auto}
+
+    .color-preview{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center}
+    .color-preview img{width:100%;max-width:300px;border-radius:12px;box-shadow:var(--shadow)}
+    .mini-colors{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center}
+    .mini-colors div{background:var(--card);padding:8px;border-radius:8px;box-shadow:var(--shadow);}
+    .mini-colors img{width:100%;height:60px;object-fit:cover;border-radius:6px;margin-bottom:6px}
+
+    footer{margin-top:72px;padding:28px 0;color:var(--muted);border-top:1px solid rgba(255,255,255,.06);text-align:center}
   </style>
 </head>
 <body>
-  <header class="nav" id="navbar">
+  <header class="nav">
     <div class="wrap nav-inner">
       <div class="brand">
         <img src="logo_svet_rolet.png" alt="Logo Svět rolet">
         <span>Svět rolet</span>
       </div>
       <div class="actions">
-        <a href="#specs">Technické parametry</a>
-        <a href="#form">Chci poptávku</a>
+        <a href="#specs" class="btn">Technické parametry</a>
+        <a href="#form" class="cta">Chci nezávaznou nabídku</a>
       </div>
     </div>
   </header>
@@ -113,23 +134,22 @@
     <section class="hero">
       <div>
         <h1>Nezávislá solární roleta pro Váš stín, klid a bezpečí</h1>
-        <p class="lead">Prémiová roleta SollarRoll – bez kabeláže, chytré napájení a čistý design. Ideální pro novostavby i rekonstrukce.</p>
+        <p class="lead">Prémiová roleta SollarRoll – bez kabeláže, tichý chod, chytré napájení a čistý design. Ideální pro novostavby i rekonstrukce.</p>
+        <div class="badge">Jednoduchá montáž<small>Kterou zvládne téměř každý</small></div>
       </div>
       <img src="roletarez.jpg" alt="Řez solární roletou SollarRoll" loading="lazy">
     </section>
 
     <section id="benefits">
-      <h2>Proč si pořídit solární rolety?</h2>
-      <div class="benefits-grid">
-        <div class="benefit-card"><svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v18m9-9H3"/></svg><h3>Nezávislý provoz bez kabeláže</h3><p>Díky integrovanému solárnímu panelu a akumulátoru fungují rolety zcela samostatně – bez nutnosti napojení na elektrickou síť.</p></div>
-        <div class="benefit-card"><svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a9.985 9.985 0 00-7.07 2.93A9.985 9.985 0 002 12a9.985 9.985 0 002.93 7.07A9.985 9.985 0 0012 22a9.985 9.985 0 007.07-2.93A9.985 9.985 0 0022 12a9.985 9.985 0 00-2.93-7.07A9.985 9.985 0 0012 2z"/></svg><h3>Úspora energie a stabilní vnitřní teplota</h3><p>Rolety chrání interiér před přehříváním v létě a únikem tepla v zimě, což snižuje náklady na klimatizaci i vytápění.</p></div>
-        <div class="benefit-card"><svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 1.657-1.343 3-3 3S6 12.657 6 11s1.343-3 3-3 3 1.343 3 3zM18 11c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3z"/></svg><h3>Zvýšení bezpečnosti a soukromí</h3><p>Robustní konstrukce z hliníku ztěžuje neoprávněné vniknutí a zároveň chrání okna před pohledy zvenčí.</p></div>
-        <div class="benefit-card"><svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><h3>Úplné zatemnění a klidný spánek</h3><p>Lamely s těsným dosednutím umožňují úplné zatemnění místnosti – ideální pro ložnice, dětské pokoje nebo domácí kino.</p></div>
-        <div class="benefit-card"><svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6h13M5 13H2v9h3v-9z"/></svg><h3>Účinné tlumení hluku zvenčí</h3><p>Díky hliníkovým lamelám s výplní z PUR pěny rolety výrazně snižují hluk z ulice či deště a zlepšují akustický komfort v interiéru.</p></div>
-        <div class="benefit-card"><svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 21v-2a4 4 0 014-4h8a4 4 0 014 4v2M8 7a4 4 0 118 0v4H8V7z"/></svg><h3>Ochrana oken a interiéru</h3><p>Rolety prodlužují životnost oken a brání vyblednutí nábytku a textilií vlivem slunečního záření.</p></div>
-        <div class="benefit-card"><svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v8m4-4H8"/></svg><h3>Jednoduché ovládání</h3><p>Možnost dálkového ovladače, nástěnného tlačítka nebo mobilní aplikace zajišťuje pohodlné ovládání odkudkoliv.</p></div>
-        <div class="benefit-card"><svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a10 10 0 100 20 10 10 0 000-20z"/></svg><h3>Provoz bez dalších nákladů</h3><p>Solární systém si sám vyrábí potřebnou energii z běžného i nepřímého slunečního záření – bez poplatků, údržby či výměny baterií.</p></div>
-        <div class="benefit-card"><svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg><h3>Snadná montáž a flexibilní použití</h3><p>Instalace bez kabelů je ideální pro novostavby i rekonstrukce, bez nutnosti zásahů do fasády či elektroinstalace.</p></div>
+      <h2>Proč zvolit solární rolety?</h2>
+      <div class="features">
+        <div class="feature"><span>🔋</span> Nulové náklady na provoz – pohon ze solárního panelu</div>
+        <div class="feature"><span>🪛</span> Jednoduchá montáž bez elektroinstalace</div>
+        <div class="feature"><span>📱</span> Ovládání dálkovým ovladačem nebo mobilem</div>
+        <div class="feature"><span>🌡️</span> Izolace proti teplu i chladu</div>
+        <div class="feature"><span>🔇</span> Účinná zvuková izolace</div>
+        <div class="feature"><span>🌑</span> Dokonalé zatemnění místnosti</div>
+        <div class="feature"><span>🔒</span> Zvýšená bezpečnost oken</div>
       </div>
     </section>
 
@@ -137,26 +157,16 @@
       <h2>Technické parametry</h2>
       <div class="card">
         <table>
-          <tr><th>Napájení</th><td>Solární panel + akumulátor – vše je již součástí rolety</td></tr>
-          <tr><th>Ovládání</th><td>Dálkové nebo mobilní aplikace</td></tr>
-          <tr><th>Lamely</th><td>Hliníkové lamely vyplněné PUR pěnou, povrchová úprava práškové lakování</td></tr>
-          <tr><th>Vodící lišty</th><td>Hliníkové vodící lišty, šířka 53 nebo 68 mm</td></tr>
-          <tr><th>Boxy rolet</th><td>Hliníkové boxy 150 mm, 165 mm, 180 mm nebo 205 mm podle velikosti rolety, s práškovým lakováním</td></tr>
-          <tr><th>Výroba</th><td>Rolety vyrábíme individuálně dle Vámi zadaného rozměru</td></tr>
-          <tr><th>Záruka</th><td>24 měsíců</td></tr>
+          <tbody>
+            <tr><th>Napájení</th><td>Solární panel + akumulátor – vše je již součástí rolety</td></tr>
+            <tr><th>Ovládání</th><td>Dálkové nebo mobilní aplikace</td></tr>
+            <tr><th>Lamely</th><td>Hliníkové lamely vyplněné PUR pěnou, povrchová úprava práškové lakování</td></tr>
+            <tr><th>Vodící lišty</th><td>Hliníkové vodící lišty, šířka 53 nebo 68 mm</td></tr>
+            <tr><th>Boxy rolet</th><td>Hliníkové boxy 150, 165, 180 nebo 205 mm s práškovým lakováním</td></tr>
+            <tr><th>Výroba</th><td>Rolety vyrábíme individuálně dle Vámi zadaného rozměru</td></tr>
+            <tr><th>Záruka</th><td>24 měsíců</td></tr>
+          </tbody>
         </table>
-      </div>
-    </section>
-
-    <section id="colors">
-      <h2>Barevné provedení</h2>
-      <div class="colors">
-        <div><img src="stříbrná.jpg" alt="Stříbrná"><p>Stříbrná</p></div>
-        <div><img src="bílá.jpg" alt="Bílá"><p>Bílá</p></div>
-        <div><img src="hnědá.jpg" alt="Hnědá RAL 8014"><p>Hnědá RAL 8014</p></div>
-        <div><img src="tmavě_hnědá.jpg" alt="Tmavě hnědá"><p>Tmavě hnědá</p></div>
-        <div><img src="antracit.jpg" alt="Antracit RAL 7016"><p>Antracit RAL 7016</p></div>
-        <div><img src="zlatý_dub.jpg" alt="Zlatý dub"><p>Zlatý dub</p></div>
       </div>
     </section>
 
@@ -164,51 +174,116 @@
       <h2>Ovládací prvky</h2>
       <div class="card">
         <table>
-          <tr><th>Dálkový ovladač pro 1 roletu</th><td>Jednoduché ovládání jedné rolety</td></tr>
-          <tr><th>Dálkový ovladač až pro 5 rolet</th><td>Možnost časování – automatické zavírání/otvírání</td></tr>
-          <tr><th>Dálkový ovladač až pro 15 rolet</th><td>Ideální pro větší objekty</td></tr>
-          <tr><th>Tlačítko na zeď</th><td>Jednoduché lokální ovládání</td></tr>
-          <tr><th>Smart Hub</th><td>Ovládání přes aplikaci, nutné Wi-Fi připojení</td></tr>
+          <tbody>
+            <tr><th>Dálkový ovladač pro 1 roletu</th><td>Základní ruční ovládání jedné rolety.</td></tr>
+            <tr><th>Dálkový ovladač až pro 5 rolet</th><td>Možnost časování – automatické zavírání a otvírání rolet.</td></tr>
+            <tr><th>Dálkový ovladač až pro 15 rolet</th><td>Komplexní ovládání většího počtu rolet.</td></tr>
+            <tr><th>Dálkový ovladač na zeď</th><td>Tlačítkové provedení pro 1 roletu – elegantní doplněk interiéru.</td></tr>
+            <tr><th>Smart Hub</th><td>Ovládání přes mobilní aplikaci – vyžaduje Wi‑Fi a internet.</td></tr>
+          </tbody>
         </table>
+      </div>
+    </section>
+
+    <section id="colors">
+      <h2>Barevné provedení</h2>
+      <p class="section-lead">Vyberte si z oblíbených barevných variant, které ladí s moderní architekturou.</p>
+      <div class="colors">
+        <div><img src="stribrna.jpg" alt="Stříbrná"><p>Stříbrná</p></div>
+        <div><img src="bila.jpg" alt="Bílá"><p>Bílá</p></div>
+        <div><img src="hneda.jpg" alt="Hnědá RAL 8014"><p>Hnědá RAL 8014</p></div>
+        <div><img src="tmavehneda.jpg" alt="Tmavě hnědá RAL 8019"><p>Tmavě hnědá RAL 8019</p></div>
+        <div><img src="antracit.jpg" alt="Antracit RAL 7016"><p>Antracit RAL 7016</p></div>
+        <div><img src="zlatydub.jpg" alt="Dřevodekor Zlatý dub"><p>Dřevodekor Zlatý dub</p></div>
       </div>
     </section>
 
     <section id="calc">
       <h2>Vzorová kalkulace</h2>
-      <div class="card">
-        <div class="calc">
-          <img src="vzor.jpg" alt="Solární roleta SollarRoll – vzorová kalkulace">
-          <div class="calc-details">
-            <h3>Solární roleta SollarRoll</h3>
-            <ul>
-              <li>Rozměr: <strong>1750 × 1450 mm</strong></li>
-              <li>Barevné provedení: <strong>Stříbrná</strong></li>
-              <li>Pohon: <strong>Solární motor</strong></li>
-              <li>Ovládání: <strong>Dálkový ovladač pro 1 roletu</strong></li>
-            </ul>
-            <div class="price-old">22 144 Kč bez DPH (26 474,24 Kč s DPH)</div>
-            <div class="discount">🎉 AKCE – 35 % SLEVA NA VŠE 🎉</div>
-            <div class="price-new">14 394 Kč bez DPH<small>(17 416,74 Kč s DPH)</small></div>
-          </div>
+      <p class="section-lead">Příklad individuálně vyrobené rolety SollarRoll s kompletní výbavou.</p>
+      <div class="calc">
+        <img src="vzor.jpg" alt="Solární roleta SollarRoll – vzorová kalkulace">
+        <div class="calc-details">
+          <h3>Solární roleta SollarRoll</h3>
+          <ul>
+            <li>Rozměr: <strong>1750 × 1450 mm</strong></li>
+            <li>Barevné provedení: <strong>Stříbrná</strong></li>
+            <li>Pohon: <strong>Solární motor</strong></li>
+            <li>Ovládání: <strong>Dálkový ovladač pro 1 roletu</strong></li>
+          </ul>
+          <div class="price-old">22 144 Kč bez DPH (26 474,24 Kč s DPH)</div>
+          <div class="discount">AKCE -35% SLEVA na vše</div>
+          <div class="price-new">14 394 Kč bez DPH<small>(17 416,74 Kč s DPH)</small></div>
         </div>
       </div>
     </section>
 
     <section id="gallery">
       <h2>Galerie</h2>
+      <p class="section-lead">Ukázky reálných instalací rolet SollarRoll.</p>
       <div class="gallery">
-        <img src="panelhouse.png" alt="Instalace na panelovém domě">
-        <img src="roh.png" alt="Instalace na rodinném domě">
-        <img src="rd.png" alt="Rodinný dům">
-        <img src="panelbrown.png" alt="Moderní tmavé provedení">
+        <img src="paneldum.png" alt="Instalace na panelovém domě">
+        <img src="roh.png" alt="Instalace na světlém rodinném domě">
+        <img src="rd.png" alt="Roleta na rodinném domě">
+        <img src="panelbrown.png" alt="Tmavé provedení na moderním domě">
       </div>
     </section>
 
     <section id="form">
-      <h2>Nezávazná poptávka</h2>
-      <div class="card">
-        <p><em>Formulář bude doplněn (PHP verze – jméno, kontakt, zpráva, odeslání na e-mail).</em></p>
+      <h2>Poptávkový formulář</h2>
+      <div class="color-preview">
+        <img src="barvyumisteni.jpg" alt="Umístění barev na roletě">
+        <div class="mini-colors">
+          <div><img src="stribrna.jpg" alt="Stříbrná"><p>Stříbrná</p></div>
+          <div><img src="bila.jpg" alt="Bílá"><p>Bílá</p></div>
+          <div><img src="hneda.jpg" alt="Hnědá"><p>Hnědá</p></div>
+          <div><img src="tmavehneda.jpg" alt="Tmavě hnědá"><p>Tm. hnědá</p></div>
+          <div><img src="antracit.jpg" alt="Antracit"><p>Antracit</p></div>
+          <div><img src="zlatydub.jpg" alt="Zlatý dub"><p>Zlatý dub</p></div>
+        </div>
       </div>
+
+      <form>
+        <div class="form-row">
+          <input type="text" placeholder="Jméno a příjmení" required>
+          <input type="email" placeholder="E-mail" required>
+          <input type="tel" placeholder="Telefon" required>
+        </div>
+
+        <div id="roles-container">
+          <div class="form-row">
+            <input type="number" placeholder="Šířka (mm)" required>
+            <input type="number" placeholder="Výška (mm)" required>
+            <input type="number" placeholder="Počet ks" required>
+            <select><option>Barva boxu</option><option>Stříbrná</option><option>Bílá</option><option>Hnědá</option><option>Tm. hnědá</option><option>Antracit</option><option>Zlatý dub</option></select>
+            <select><option>Barva vodítek</option><option>Stříbrná</option><option>Bílá</option><option>Hnědá</option><option>Tm. hnědá</option><option>Antracit</option><option>Zlatý dub</option></select>
+            <select><option>Barva pancíře</option><option>Stříbrná</option><option>Bílá</option><option>Hnědá</option><option>Tm. hnědá</option><option>Antracit</option><option>Zlatý dub</option></select>
+            <select><option>Barva koncové lišty</option><option>Stříbrná</option><option>Bílá</option><option>Hnědá</option><option>Tm. hnědá</option><option>Antracit</option><option>Zlatý dub</option></select>
+          </div>
+        </div>
+
+        <button type="button" id="add-role" class="cta" style="margin-top:12px;background:linear-gradient(135deg,var(--gold),var(--orange));">+ Přidat další roletu</button>
+
+        <h3 style="margin-top:18px">Ovladače</h3>
+        <div class="card">
+          <table>
+            <tbody>
+              <tr><th>Dálkový ovladač pro 1 roletu</th><td><input type="number" placeholder="Počet ks"></td></tr>
+              <tr><th>Dálkový ovladač až pro 5 rolet</th><td><input type="number" placeholder="Počet ks"></td></tr>
+              <tr><th>Dálkový ovladač až pro 15 rolet</th><td><input type="number" placeholder="Počet ks"></td></tr>
+              <tr><th>Dálkový ovladač na zeď</th><td><input type="number" placeholder="Počet ks"></td></tr>
+              <tr><th>Smart Hub</th><td><input type="number" placeholder="Počet ks"></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <select><option>Předvrtání vodících lišt</option><option>Do okna</option><option>Do špalety</option><option>Bez předvrtání</option></select>
+
+        <textarea rows="3" placeholder="Další poznámky nebo upřesnění..."></textarea>
+
+        <div class="checkbox"><input type="checkbox" required><label>Souhlasím se zpracováním osobních údajů</label></div>
+        <button type="submit" class="cta">Odeslat poptávku</button>
+      </form>
     </section>
 
     <section id="contact">
@@ -229,16 +304,14 @@
   </footer>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    let lastScroll = 0;
-    const navbar = document.getElementById("navbar");
-    window.addEventListener("scroll", () => {
-      const current = window.pageYOffset;
-      if (current > lastScroll && current > 100) navbar.classList.add("hidden");
-      else navbar.classList.remove("hidden");
-      lastScroll = current;
+    // Přidání dalšího řádku specifikace rolety
+    document.getElementById('add-role').addEventListener('click', () => {
+      const container = document.getElementById('roles-container');
+      const first = container.firstElementChild.cloneNode(true);
+      first.querySelectorAll('input,select').forEach(el => el.value='');
+      container.appendChild(first);
     });
-  </script>
-</body>
-</html>
+    // Rok do patičky
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Nový kód pro Smart
