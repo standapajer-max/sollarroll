@@ -30,15 +30,16 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background: #0b0e13d9;
+      background: #f5f7fb;
+      color: #0b0e13;
       backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(255, 255, 255, .1);
+      border-bottom: 1px solid rgba(0, 0, 0, .1);
       padding: 10px 0;
       transition: top 0.4s ease;
     }
     header.nav.hidden { top: -120px; }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
-    .brand { display: flex; align-items: center; gap: 16px; font-weight: 700; }
+    .brand { display: flex; align-items: center; gap: 16px; font-weight: 700; color: #0b0e13; }
     .brand img { width: 90px; height: 90px; border-radius: 50%; transition: transform 0.3s ease; }
     .brand img:hover { transform: scale(1.05); }
     .brand span { font-size: 32px; font-weight: 800; letter-spacing: 0.8px; }
@@ -49,13 +50,19 @@
       gap: 8px;
       padding: 12px 18px;
       border-radius: 999px;
-      background: linear-gradient(135deg, var(--gold), var(--gold-2));
-      color: #1a1e27;
       font-weight: 700;
       border: none;
       cursor: pointer;
       box-shadow: var(--shadow);
       margin-left: 12px;
+    }
+    .actions a:first-child {
+      background: #0b0e13;
+      color: #f5f7fb;
+    }
+    .actions a:last-child {
+      background: linear-gradient(135deg, var(--gold), var(--gold-2));
+      color: #1a1e27;
     }
     .actions a:hover { transform: translateY(-1px); }
 
@@ -83,20 +90,6 @@
     .colors img { width: 100%; height: 140px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255, 255, 255, .08); box-shadow: var(--shadow); }
     .colors p { margin-top: 8px; color: var(--muted); }
 
-    .calc { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 32px; background: var(--card); border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow); border: 1px solid rgba(255, 255, 255, .08); }
-    @media(max-width:850px){.calc{grid-template-columns:1fr;text-align:center}}
-    .calc img { width: 100%; max-width: 320px; margin: auto; border-radius: 12px; }
-    .calc-details h3 { color: var(--gold); margin-bottom: 10px; }
-    .calc-details ul { list-style: none; margin: 0 0 16px; padding: 0; }
-    .calc-details li { margin-bottom: 6px; color: var(--muted); }
-    .price-old { text-decoration: line-through; color: var(--muted); font-size: 18px; }
-    .discount { display: inline-block; background: linear-gradient(135deg, var(--orange), var(--gold-2)); color: #1a1e27; padding: 6px 14px; border-radius: 8px; font-weight: 700; margin: 10px 0; }
-    .price-new { font-size: 24px; font-weight: 700; color: var(--gold-2); }
-    .price-new small { font-size: 16px; color: var(--muted); display: block; }
-
-    .gallery { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); margin-top: 24px; }
-    .gallery img { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255, 255, 255, .08); box-shadow: var(--shadow); }
-
     footer { margin-top: 72px; padding: 28px 0; color: var(--muted); border-top: 1px solid rgba(255, 255, 255, .06); text-align: center; }
   </style>
 </head>
@@ -115,21 +108,18 @@
   </header>
 
   <main class="wrap">
-    <section class="hero">
-      <div>
-        <h1>Nezávislá solární roleta pro Váš stín, klid a bezpečí</h1>
-        <p class="lead">Prémiová roleta SollarRoll – bez kabeláže, chytré napájení a čistý design. Ideální pro novostavby i rekonstrukce.</p>
-      </div>
-      <img src="roleta_řez.jpg" alt="Řez solární roletou SollarRoll" loading="lazy">
-    </section>
-
     <section id="benefits">
       <h2>Proč si pořídit solární rolety?</h2>
       <div class="benefits">
-        <div class="benefit"><h3>Bez kabeláže</h3><p>Snadná montáž bez nutnosti připojení na elektřinu.</p></div>
-        <div class="benefit"><h3>Úspora energie</h3><p>Rolety chrání interiér před teplem i chladem.</p></div>
-        <div class="benefit"><h3>Tichý provoz</h3><p>Moderní motory zajišťují tichý a plynulý chod.</p></div>
-        <div class="benefit"><h3>Bezúdržbové řešení</h3><p>Vše funguje automaticky, napájeno solárním článkem.</p></div>
+        <div class="benefit"><h3>Nezávislý provoz bez kabeláže</h3><p>Díky integrovanému solárnímu panelu a akumulátoru fungují rolety zcela samostatně – bez nutnosti napojení na elektrickou síť.</p></div>
+        <div class="benefit"><h3>Úspora energie a stabilní vnitřní teplota</h3><p>Rolety chrání interiér před přehříváním v létě a únikem tepla v zimě, což snižuje náklady na klimatizaci i vytápění.</p></div>
+        <div class="benefit"><h3>Zvýšení bezpečnosti a soukromí</h3><p>Robustní konstrukce z hliníku ztěžuje neoprávněné vniknutí a zároveň chrání okna před pohledy zvenčí.</p></div>
+        <div class="benefit"><h3>Úplné zatemnění a klidný spánek</h3><p>Lamely s těsným dosednutím umožňují úplné zatemnění místnosti – ideální pro ložnice, dětské pokoje nebo domácí kino.</p></div>
+        <div class="benefit"><h3>Účinné tlumení hluku zvenčí</h3><p>Díky hliníkovým lamelám s výplní z PUR pěny rolety výrazně snižují hluk z ulice či deště a zlepšují akustický komfort v interiéru.</p></div>
+        <div class="benefit"><h3>Ochrana oken a interiéru</h3><p>Rolety prodlužují životnost oken a brání vyblednutí nábytku a textilií vlivem slunečního záření.</p></div>
+        <div class="benefit"><h3>Jednoduché ovládání</h3><p>Možnost dálkového ovladače, nástěnného tlačítka nebo mobilní aplikace zajišťuje pohodlné ovládání odkudkoliv.</p></div>
+        <div class="benefit"><h3>Provoz bez dalších nákladů</h3><p>Solární systém si sám vyrábí potřebnou energii z běžného i nepřímého slunečního záření – bez poplatků, údržby či výměny baterií.</p></div>
+        <div class="benefit"><h3>Snadná montáž a flexibilní použití</h3><p>Instalace bez kabelů je ideální pro novostavby i rekonstrukce, bez nutnosti zásahů do fasády či elektroinstalace.</p></div>
       </div>
     </section>
 
@@ -142,7 +132,7 @@
             <tr><th>Ovládání</th><td>Dálkové nebo mobilní aplikace</td></tr>
             <tr><th>Lamely</th><td>Hliníkové lamely vyplněné PUR pěnou, povrchová úprava práškové lakování</td></tr>
             <tr><th>Vodící lišty</th><td>Hliníkové vodící lišty, šířka 53 nebo 68 mm</td></tr>
-            <tr><th>Boxy rolet</th><td>Hliníkové boxy 150–205 mm s práškovým lakováním</td></tr>
+            <tr><th>Boxy rolet</th><td>Hliníkové boxy 150 mm, 165 mm, 180 mm nebo 205 mm podle velikosti rolety, s práškovým lakováním</td></tr>
             <tr><th>Výroba</th><td>Rolety vyrábíme individuálně dle Vámi zadaného rozměru</td></tr>
             <tr><th>Záruka</th><td>24 měsíců</td></tr>
           </tbody>
@@ -150,64 +140,11 @@
       </div>
     </section>
 
-    <section id="colors">
-      <h2>Barevné provedení</h2>
-      <div class="colors">
-        <div><img src="stříbrná.jpg" alt="Stříbrná"><p>Stříbrná</p></div>
-        <div><img src="bílá.jpg" alt="Bílá"><p>Bílá</p></div>
-        <div><img src="hnědá.jpg" alt="Hnědá RAL 8014"><p>Hnědá RAL 8014</p></div>
-        <div><img src="tmavě_hnědá.jpg" alt="Tmavě hnědá"><p>Tmavě hnědá</p></div>
-        <div><img src="antracit.jpg" alt="Antracit RAL 7016"><p>Antracit RAL 7016</p></div>
-        <div><img src="zlatý_dub.jpg" alt="Zlatý dub"><p>Zlatý dub</p></div>
-      </div>
-    </section>
-
-    <section id="controls">
-      <h2>Ovládací prvky</h2>
-      <div class="card">
-        <table>
-          <tr><th>Dálkový ovladač pro 1 roletu</th><td>Jednoduché ovládání jedné rolety</td></tr>
-          <tr><th>Dálkový ovladač až pro 5 rolet</th><td>Možnost časování – automatické zavírání/otvírání</td></tr>
-          <tr><th>Dálkový ovladač až pro 15 rolet</th><td>Ideální pro větší objekty</td></tr>
-          <tr><th>Tlačítko na zeď</th><td>Jednoduché lokální ovládání</td></tr>
-          <tr><th>Smart Hub</th><td>Ovládání přes aplikaci, nutné Wi-Fi připojení</td></tr>
-        </table>
-      </div>
-    </section>
-
-    <section id="calc">
-      <h2>Vzorová kalkulace</h2>
-      <div class="calc">
-        <img src="vzor.jpg" alt="Solární roleta SollarRoll – vzorová kalkulace">
-        <div class="calc-details">
-          <h3>Solární roleta SollarRoll</h3>
-          <ul>
-            <li>Rozměr: <strong>1750 × 1450 mm</strong></li>
-            <li>Barevné provedení: <strong>Stříbrná</strong></li>
-            <li>Pohon: <strong>Solární motor</strong></li>
-            <li>Ovládání: <strong>Dálkový ovladač pro 1 roletu</strong></li>
-          </ul>
-          <div class="price-old">22 144 Kč bez DPH (26 474,24 Kč s DPH)</div>
-          <div class="discount">🎉 AKCE – 35 % SLEVA NA VŠE 🎉</div>
-          <div class="price-new">14 394 Kč bez DPH<small>(17 416,74 Kč s DPH)</small></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="gallery">
-      <h2>Galerie</h2>
-      <div class="gallery">
-        <img src="panelový_dům.png" alt="Instalace na panelovém domě">
-        <img src="roh.png" alt="Instalace na rodinném domě">
-        <img src="rd.png" alt="Rodinný dům">
-        <img src="panelák_hnědá.png" alt="Moderní tmavé provedení">
-      </div>
-    </section>
-
     <section id="contact">
       <h2>Kontakt</h2>
       <div class="card">
         <p><strong>Svět rolet</strong><br>
+        Pšenčíkova 797/3, Kamýk, 142 00 Praha<br>
         E-mail: <a href="mailto:info@svetrolet.cz">info@svetrolet.cz</a><br>
         Telefon: <a href="tel:+420602314106">+420 602 314 106</a></p>
       </div>
@@ -221,10 +158,8 @@
   </footer>
 
   <script>
-    // Rok v patičce
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Skrývání/zobrazování navigace
     let lastScroll = 0;
     const navbar = document.getElementById("navbar");
     window.addEventListener("scroll", () => {
