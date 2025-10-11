@@ -156,3 +156,93 @@
         <div><img src="zlaty_dub.jpg" alt="Zlatý dub"><p>Dřevodekor Zlatý dub</p></div>
       </div>
     </section>
+    <!-- Sekce ovládání -->
+    <section id="controls" class="controls">
+      <h2>Ovládací prvky</h2>
+      <p class="section-lead">Vyberte si typ ovládání, který vám nejvíce vyhovuje.</p>
+      <div class="card">
+        <table>
+          <tbody>
+            <tr><th>Dálkový ovladač pro 1 roletu</th><td>Jednoduché ovládání jednotlivé rolety.</td></tr>
+            <tr><th>Dálkový ovladač až pro 5 rolet s časováním</th><td>Možnost automatického nastavení otevírání a zavírání.</td></tr>
+            <tr><th>Dálkový ovladač až pro 15 rolet</th><td>Centrální ovládání více rolet najednou.</td></tr>
+            <tr><th>Ovladač na zeď</th><td>Elegantní řešení pro jednotlivá okna.</td></tr>
+            <tr><th>Smart Hub</th><td>Propojení s mobilní aplikací, Wi-Fi a internetem v místě instalace.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Vzorová kalkulace -->
+    <section id="calc">
+      <h2>Vzorová kalkulace</h2>
+      <p class="section-lead">Příklad individuálně vyrobené rolety SollarRoll s kompletní výbavou.</p>
+      <div class="calc">
+        <img src="vzor.jpg" alt="Solární roleta SollarRoll – vzorová kalkulace">
+        <div class="calc-details">
+          <h3>Solární roleta SollarRoll</h3>
+          <ul>
+            <li>Rozměr: <strong>1750 × 1450 mm</strong></li>
+            <li>Barevné provedení: <strong>Stříbrná</strong></li>
+            <li>Pohon: <strong>Solární motor</strong></li>
+            <li>Ovládání: <strong>Dálkový ovladač pro 1 roletu</strong></li>
+          </ul>
+          <div class="price-old">22 144 Kč bez DPH (26 474,24 Kč s DPH)</div>
+          <div class="discount">🎉 AKCE – 35 % SLEVA NA VŠE 🎉</div>
+          <div class="price-new">14 394 Kč bez DPH<small>(17 416,74 Kč s DPH)</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Galerie -->
+    <section id="gallery">
+      <h2>Galerie</h2>
+      <p class="section-lead">Ukázky reálných instalací rolet SollarRoll.</p>
+      <div class="gallery">
+        <img src="panelovy_dum.png" alt="Instalace na panelovém domě">
+        <img src="roh.png" alt="Instalace na světlém rodinném domě">
+        <img src="rd.png" alt="Roleta na rodinném domě">
+        <img src="panelak_hneda.png" alt="Tmavé provedení na moderním domě">
+      </div>
+    </section>
+
+    <!-- Kontakt -->
+    <section id="contact">
+      <h2>Kontakt</h2>
+      <div class="card">
+        <p><strong>Svět rolet</strong><br>
+        E-mail: <a href="mailto:info@svetrolet.cz">info@svetrolet.cz</a><br>
+        Telefon: <a href="tel:+420602314106">+420 602 314 106</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <small>© <span id="year"></span> Svět rolet. Všechna práva vyhrazena.</small>
+    </div>
+  </footer>
+
+  <script>
+    // Rok v patičce
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Schování / zobrazení navigace při scrollu
+    let lastScroll = 0;
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      if (currentScroll <= 0) {
+        navbar.classList.remove('hidden');
+        return;
+      }
+      if (currentScroll > lastScroll && !navbar.classList.contains('hidden')) {
+        navbar.classList.add('hidden');
+      } else if (currentScroll < lastScroll && navbar.classList.contains('hidden')) {
+        navbar.classList.remove('hidden');
+      }
+      lastScroll = currentScroll;
+    });
+  </script>
+</body>
+</html>
