@@ -1,267 +1,288 @@
-<!doctype html>
-<html lang="cs">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Svět rolet – Solární předokenní roleta</title>
-  <meta name="description" content="Nezávislá solární roleta pro váš stín, klid a bezpečí. Jednoduchá montáž, bez kabelů a s nulovými náklady na provoz." />
-  <meta name="theme-color" content="#0b0e13" />
-  <link rel="icon" href="logo_svet_rolet.png" type="image/png" />
-  <style>
-    :root{
-      --bg:#0b0e13;
-      --card:#121722;
-      --muted:#8892a6;
-      --text:#f5f7fb;
-      --gold:#caa66a;
-      --gold-2:#f0d28a;
-      --orange:#f5b35d;
-      --shadow:0 10px 30px rgba(0,0,0,.35);
-      --radius:18px;
+import { useState, useEffect } from "react";
+
+export default function RoletaKonfigurator() {
+  const [sirka, setSirka] = useState(1500);
+  const [vyska, setVyska] = useState(1600);
+  const [kusy, setKusy] = useState(1);
+  const [boxColor, setBoxColor] = useState("bílá");
+  const [guideColor, setGuideColor] = useState("bílá");
+  const [pancierColor, setPancierColor] = useState("bílá");
+  const [endColor, setEndColor] = useState("bílá");
+  const [guideType, setGuideType] = useState("PP53");
+  const [orderItems, setOrderItems] = useState([]);
+  const [accessories, setAccessories] = useState({});
+
+  const priceTable = {
+    "1500x1600": 9999,
+    "2000x2000": 12000,
+    "2500x2000": 15000,
+  };
+
+  const accessoriesList = [
+    { id: "ovladac1", name: "Dálkový ovladač 1-kanálový", price: 500 },
+    { id: "ovladac5", name: "Dálkový ovladač 5-kanálový", price: 1200 },
+    { id: "wifimodul", name: "Wi-Fi modul", price: 2500 },
+  ];
+
+  const round100 = (value) => Math.ceil(value / 100) * 100;
+
+  const getMinBoxSize = (v) => {
+    if (v <= 1600) return 150;
+    if (v <= 2080) return 165;
+    if (v <= 2590) return 180;
+    return 205;
+  };
+
+  useEffect(() => {
+    if (sirka > 2900) {
+      setGuideType("PP68");
     }
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.6}
-    a{color:var(--gold)}
-    .wrap{max-width:1200px;margin:0 auto;padding:24px}
+  }, [sirka]);
 
-    header.nav{
-      position:fixed;top:0;left:0;right:0;z-index:100;
-      background:#0b0e13d9;backdrop-filter:blur(8px);
-      border-bottom:1px solid rgba(255,255,255,.1);
-      padding:10px 0;transition:top 0.4s ease;
+  const calcPrice = (s, v, kusy, guideType, colors) => {
+    const sR = round100(s);
+    const vR = round100(v);
+    const key = `${sR}x${vR}`;
+
+    let base = priceTable[key] || 10000;
+    let extra = 0;
+
+    if (colors.includes("zlatý dub")) {
+      extra += 2000;
     }
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:18px}
-    .brand{display:flex;align-items:center;gap:16px;font-weight:700;}
-    .brand img{width:90px;height:90px;border-radius:50%;transition:transform 0.3s ease;}
-    .brand img:hover{transform:scale(1.05);}
-    .brand span{font-size:32px;font-weight:800;letter-spacing:0.8px;}
-    .cta{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#1a1e27;font-weight:700;border:none;cursor:pointer;box-shadow:var(--shadow)}
-    .cta:hover{transform:translateY(-1px)}
-    header.hidden{top:-120px;}
 
-    :target::before {content:"";display:block;height:100px;margin-top:-100px;}
+    extra += (sR / 1000) * 980;
+    if (guideType === "PP53") {
+      extra += (vR / 1000) * 2 * 152;
+    } else {
+      extra += (vR / 1000) * 2 * 265;
+    }
+    extra += (sR * vR) / 1000000 * 130;
+    extra += (sR / 1000) * 220;
 
-    .hero{margin-top:140px;display:grid;grid-template-columns:1.1fr 0.9fr;align-items:center;gap:28px}
-    @media(max-width:850px){.hero{grid-template-columns:1fr}}
-    .hero h1{font-size:clamp(28px,4vw,46px);margin-bottom:12px}
-    .hero p.lead{font-size:clamp(16px,2vw,20px);color:var(--muted);margin-bottom:16px}
-    .hero img{width:100%;border-radius:14px;box-shadow:var(--shadow);object-fit:contain;}
+    const cenaBezDPH = (base + extra) * kusy;
+    const cenaSDPH = cenaBezDPH * 1.21;
 
-    .badge{position:relative;display:inline-block;background:linear-gradient(135deg,var(--orange),var(--gold-2));color:#1a1e27;font-weight:700;padding:10px 16px;border-radius:12px;box-shadow:var(--shadow);transform:rotate(-4deg);margin-top:12px}
-    .badge small{display:block;font-weight:500;color:#000;font-size:14px;margin-top:2px}
-    .badge::before{content:"🪛";position:absolute;left:-24px;top:6px;font-size:20px}
+    return { cenaBezDPH, cenaSDPH };
+  };
 
-    section{margin:56px 0}
-    h2{font-size:clamp(22px,3vw,32px);margin-bottom:10px}
-    .section-lead{color:var(--muted);margin-bottom:24px}
-    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+  const { cenaBezDPH, cenaSDPH } = calcPrice(sirka, vyska, kusy, guideType, [boxColor, guideColor, pancierColor, endColor]);
 
-    /* Výhody */
-    .benefits{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:24px;}
-    .benefit{background:var(--card);padding:22px;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.08);text-align:center;}
-    .benefit h3{color:var(--gold);margin-bottom:8px;}
+  const minBoxSize = getMinBoxSize(vyska);
 
-    /* Specifikace */
-    table{width:100%;border-collapse:collapse}
-    th,td{padding:10px 12px;border-bottom:1px dashed rgba(255,255,255,.08);text-align:left}
-    th{color:var(--muted)}
+  const colors = ["bílá", "stříbrná", "antracit", "hnědá", "tmavě hnědá", "zlatý dub"];
 
-    /* Barvy */
-    .colors{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:24px;margin-top:24px;text-align:center}
-    .colors img{width:100%;height:140px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow)}
-    .colors p{margin-top:8px;color:var(--muted)}
+  const addToOrder = () => {
+    const item = {
+      id: Date.now(),
+      sirka,
+      vyska,
+      kusy,
+      minBoxSize,
+      boxColor,
+      guideColor,
+      pancierColor,
+      endColor,
+      guideType,
+      ...calcPrice(sirka, vyska, kusy, guideType, [boxColor, guideColor, pancierColor, endColor])
+    };
+    setOrderItems([...orderItems, item]);
+  };
 
-    /* Ovládání */
-    .controls .card table{width:100%;}
-    .controls th{width:50%;color:var(--muted);text-align:left;}
-    .controls td{color:var(--text);}
+  const updateItem = (id, field, value) => {
+    setOrderItems(orderItems.map((item) => {
+      if (item.id === id) {
+        const updated = { ...item, [field]: value };
+        return {
+          ...updated,
+          ...calcPrice(
+            updated.sirka,
+            updated.vyska,
+            updated.kusy,
+            updated.guideType,
+            [updated.boxColor, updated.guideColor, updated.pancierColor, updated.endColor]
+          )
+        };
+      }
+      return item;
+    }));
+  };
 
-    /* Kalkulace */
-    .calc{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:32px;background:var(--card);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.08);}
-    @media(max-width:850px){.calc{grid-template-columns:1fr;text-align:center}}
-    .calc img{width:100%;max-width:320px;margin:auto;border-radius:12px;}
-    .calc-details h3{color:var(--gold);margin-bottom:10px}
-    .calc-details ul{list-style:none;margin:0 0 16px;padding:0}
-    .calc-details li{margin-bottom:6px;color:var(--muted)}
-    .price-old{text-decoration:line-through;color:var(--muted);font-size:18px;}
-    .discount{display:inline-block;background:linear-gradient(135deg,var(--orange),var(--gold-2));color:#1a1e27;padding:6px 14px;border-radius:8px;font-weight:700;margin:10px 0;}
-    .price-new{font-size:24px;font-weight:700;color:var(--gold-2);}
-    .price-new small{font-size:16px;color:var(--muted);display:block}
+  const deleteItem = (id) => {
+    setOrderItems(orderItems.filter((item) => item.id !== id));
+  };
 
-    .gallery{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));margin-top:24px}
-    .gallery img{width:100%;height:200px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow)}
+  const accessoriesTotal = Object.entries(accessories).reduce((sum, [id, qty]) => {
+    const acc = accessoriesList.find((a) => a.id === id);
+    return sum + (acc ? acc.price * qty : 0);
+  }, 0);
 
-    footer{margin-top:72px;padding:28px 0;color:var(--muted);border-top:1px solid rgba(255,255,255,.06);text-align:center}
-  </style>
-</head>
-<body>
-  <header class="nav" id="navbar">
-    <div class="wrap nav-inner">
-      <div class="brand">
-        <img src="logo_svet_rolet.png" alt="Logo Svět rolet">
-        <span>Svět rolet</span>
+  const totalBezDPH = orderItems.reduce((sum, i) => sum + i.cenaBezDPH, 0) + accessoriesTotal;
+  const totalSDPH = totalBezDPH * 1.21;
+
+  return (
+    <div className="max-w-5xl mx-auto p-6 bg-white rounded-2xl shadow">
+      <h1 className="text-2xl font-bold mb-4">Konfigurátor rolety</h1>
+
+      <div className="grid grid-cols-2 gap-4 mb-4">
+        <label>
+          Šířka (mm)
+          <input type="number" value={sirka} onChange={(e) => setSirka(+e.target.value)} className="border p-2 w-full" />
+        </label>
+        <label>
+          Výška (mm)
+          <input type="number" value={vyska} onChange={(e) => setVyska(+e.target.value)} className="border p-2 w-full" />
+        </label>
+        <label>
+          Počet kusů
+          <input type="number" value={kusy} onChange={(e) => setKusy(+e.target.value)} className="border p-2 w-full" />
+        </label>
       </div>
-      <div class="actions">
-        <a href="#specs" class="btn">Technické parametry</a>
-        <a href="#form" class="cta">Chci nezávaznou nabídku</a>
-      </div>
-    </div>
-  </header>
 
-  <main class="wrap">
-    <section class="hero">
-      <div>
-        <h1>Nezávislá solární roleta pro Váš stín, klid a bezpečí</h1>
-        <p class="lead">Prémiová roleta SollarRoll – bez kabeláže, chytré napájení a čistý design. Ideální pro novostavby i rekonstrukce.</p>
-        <div class="badge">Jednoduchá montáž<small>Kterou zvládne téměř každý</small></div>
+      <div className="mb-4 p-3 bg-blue-50 rounded-lg border">
+        <p><strong>Minimální velikost boxu:</strong> {minBoxSize} mm</p>
       </div>
-      <img src="roleta_rez.jpg" alt="Řez solární roletou SollarRoll" loading="lazy">
-    </section>
 
-    <section id="benefits">
-      <section id="benefits" aria-labelledby="benefits-title">
-<h2 id="benefits-title">Klíčové výhody</h2>
-<p class="section-lead">Efektivita, komfort a bezpečí v jednom řešení – bez starostí s elektřinou.</p>
-<div class="grid cols-3">
-<div class="card feature">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-<div>
-<h3>Chytrý solární pohon</h3>
-<p class="muted">Automatické a tiché ovládání. Bez přívodu elektřiny, šetří čas i náklady.</p>
-</div>
-</div>
-<div class="card feature">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12h16"/><path d="M12 4v16"/><rect x="3" y="3" width="18" height="18" rx="3"/></svg>
-<div>
-<h3>Tepelný i světelný komfort</h3>
-<p class="muted">Zabraňuje přehřívání v létě a chrání soukromí. V zimě pomáhá snižovat ztráty tepla.</p>
-</div>
-</div>
-<div class="card feature">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l7 4v6c0 5-7 8-7 8s-7-3-7-8V7l7-4z"/></svg>
-<div>
-<h3>Bezpečí a odolnost</h3>
-<p class="muted">Robustní provedení a kvalitní materiály. Prémiová povrchová úprava pro dlouhou životnost.</p>
-</div>
-</div>
-</div>
-</section>
-
-    <section id="specs">
-      <h2>Technické parametry</h2>
-      <div class="card">
-        <table>
-          <tbody>
-            <tr><th>Napájení</th><td>Solární panel + akumulátor – vše je již součástí rolety</td></tr>
-            <tr><th>Ovládání</th><td>Dálkové nebo mobilní aplikace</td></tr>
-            <tr><th>Lamely</th><td>Hliníkové lamely s PUR pěnou, práškové lakování</td></tr>
-            <tr><th>Vodící lišty</th><td>Hliníkové, šířka 53 nebo 68 mm</td></tr>
-            <tr><th>Box</th><td>150–205 mm, hliník s práškovým lakem</td></tr>
-            <tr><th>Výroba</th><td>Na míru dle zadaných rozměrů</td></tr>
-            <tr><th>Záruka</th><td>24 měsíců</td></tr>
-          </tbody>
-        </table>
+      <h2 className="font-semibold mt-4">Barvy</h2>
+      <div className="grid grid-cols-2 gap-4">
+        <label>
+          Box
+          <select value={boxColor} onChange={(e) => setBoxColor(e.target.value)} className="border p-2 w-full">
+            {colors.map((c) => <option key={c}>{c}</option>)}
+          </select>
+        </label>
+        <label>
+          Vodící lišty
+          <select value={guideColor} onChange={(e) => setGuideColor(e.target.value)} className="border p-2 w-full">
+            {colors.map((c) => <option key={c}>{c}</option>)}
+          </select>
+        </label>
+        <label>
+          Pancíř
+          <select value={pancierColor} onChange={(e) => setPancierColor(e.target.value)} className="border p-2 w-full">
+            {colors.map((c) => <option key={c}>{c}</option>)}
+          </select>
+        </label>
+        <label>
+          Koncová lišta
+          <select value={endColor} onChange={(e) => setEndColor(e.target.value)} className="border p-2 w-full">
+            {colors.map((c) => <option key={c}>{c}</option>)}
+          </select>
+        </label>
       </div>
-    </section>
 
-    <section id="colors">
-      <h2>Barevné provedení</h2>
-      <div class="colors">
-        <div><img src="stribrna.jpg" alt="Stříbrná"><p>Stříbrná</p></div>
-        <div><img src="bila.jpg" alt="Bílá"><p>Bílá</p></div>
-        <div><img src="hneda.jpg" alt="Hnědá RAL 8014"><p>Hnědá RAL 8014</p></div>
-        <div><img src="tmave_hneda.jpg" alt="Tmavě hnědá RAL 8019"><p>Tmavě hnědá RAL 8019</p></div>
-        <div><img src="antracit.jpg" alt="Antracit RAL 7016"><p>Antracit RAL 7016</p></div>
-        <div><img src="zlaty_dub.jpg" alt="Zlatý dub"><p>Dřevodekor Zlatý dub</p></div>
-      </div>
-    </section>
-    <!-- Sekce ovládání -->
-    <section id="controls" class="controls">
-      <h2>Ovládací prvky</h2>
-      <p class="section-lead">Vyberte si typ ovládání, který vám nejvíce vyhovuje.</p>
-      <div class="card">
-        <table>
-          <tbody>
-            <tr><th>Dálkový ovladač pro 1 roletu</th><td>Jednoduché ovládání jednotlivé rolety.</td></tr>
-            <tr><th>Dálkový ovladač až pro 5 rolet s časováním</th><td>Možnost automatického nastavení otevírání a zavírání.</td></tr>
-            <tr><th>Dálkový ovladač až pro 15 rolet</th><td>Centrální ovládání více rolet najednou.</td></tr>
-            <tr><th>Ovladač na zeď</th><td>Elegantní řešení pro jednotlivá okna.</td></tr>
-            <tr><th>Smart Hub</th><td>Propojení s mobilní aplikací, Wi-Fi a internetem v místě instalace.</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+      <h2 className="font-semibold mt-4">Vodící lišty</h2>
+      <select
+        value={guideType}
+        onChange={(e) => setGuideType(e.target.value)}
+        className="border p-2 w-full"
+        disabled={sirka > 2900}
+      >
+        <option value="PP53">PP53 (standard)</option>
+        <option value="PP68">PP68 (širší)</option>
+      </select>
+      {sirka > 2900 && (
+        <p className="text-sm text-red-600 mt-1">Pro šířku nad 2900 mm je povinná lišta PP68.</p>
+      )}
 
-    <!-- Vzorová kalkulace -->
-    <section id="calc">
-      <h2>Vzorová kalkulace</h2>
-      <p class="section-lead">Příklad individuálně vyrobené rolety SollarRoll s kompletní výbavou.</p>
-      <div class="calc">
-        <img src="vzor.jpg" alt="Solární roleta SollarRoll – vzorová kalkulace">
-        <div class="calc-details">
-          <h3>Solární roleta SollarRoll</h3>
-          <ul>
-            <li>Rozměr: <strong>1750 × 1450 mm</strong></li>
-            <li>Barevné provedení: <strong>Stříbrná</strong></li>
-            <li>Pohon: <strong>Solární motor</strong></li>
-            <li>Ovládání: <strong>Dálkový ovladač pro 1 roletu</strong></li>
-          </ul>
-          <div class="price-old">22 144 Kč bez DPH (26 474,24 Kč s DPH)</div>
-          <div class="discount">🎉 AKCE – 35 % SLEVA NA VŠE 🎉</div>
-          <div class="price-new">14 394 Kč bez DPH<small>(17 416,74 Kč s DPH)</small></div>
+      <div className="mt-6 p-4 bg-gray-100 rounded-lg">
+        <p><strong>Cena bez DPH:</strong> {cenaBezDPH.toFixed(2)} Kč</p>
+        <p><strong>Cena s DPH:</strong> {cenaSDPH.toFixed(2)} Kč</p>
+      </div>
+
+      <button onClick={addToOrder} className="mt-4 px-4 py-2 bg-green-600 text-white rounded-lg shadow">Přidat do objednávky</button>
+
+      {orderItems.length > 0 && (
+        <div className="mt-8">
+          <h2 className="text-xl font-bold mb-2">Shrnutí objednávky</h2>
+          <table className="w-full border-collapse border text-sm">
+            <thead>
+              <tr className="bg-gray-100">
+                <th className="border p-2">Šířka</th>
+                <th className="border p-2">Výška</th>
+                <th className="border p-2">Box (mm)</th>
+                <th className="border p-2">Kusy</th>
+                <th className="border p-2">Barva boxu</th>
+                <th className="border p-2">Barva lišt</th>
+                <th className="border p-2">Barva pancíře</th>
+                <th className="border p-2">Barva koncové lišty</th>
+                <th className="border p-2">Lišta</th>
+                <th className="border p-2">Cena bez DPH</th>
+                <th className="border p-2">Cena s DPH</th>
+                <th className="border p-2">Akce</th>
+              </tr>
+            </thead>
+            <tbody>
+              {orderItems.map((item) => (
+                <tr key={item.id}>
+                  <td className="border p-2">
+                    <input type="number" value={item.sirka} onChange={(e) => updateItem(item.id, "sirka", +e.target.value)} className="border p-1 w-20" />
+                  </td>
+                  <td className="border p-2">
+                    <input type="number" value={item.vyska} onChange={(e) => updateItem(item.id, "vyska", +e.target.value)} className="border p-1 w-20" />
+                  </td>
+                  <td className="border p-2">{getMinBoxSize(item.vyska)}</td>
+                  <td className="border p-2">
+                    <input type="number" value={item.kusy} onChange={(e) => updateItem(item.id, "kusy", +e.target.value)} className="border p-1 w-16" />
+                  </td>
+                  <td className="border p-2">
+                    <select value={item.boxColor} onChange={(e) => updateItem(item.id, "boxColor", e.target.value)} className="border p-1">
+                      {colors.map((c) => <option key={c}>{c}</option>)}
+                    </select>
+                  </td>
+                  <td className="border p-2">
+                    <select value={item.guideColor} onChange={(e) => updateItem(item.id, "guideColor", e.target.value)} className="border p-1">
+                      {colors.map((c) => <option key={c}>{c}</option>)}
+                    </select>
+                  </td>
+                  <td className="border p-2">
+                    <select value={item.pancierColor} onChange={(e) => updateItem(item.id, "pancierColor", e.target.value)} className="border p-1">
+                      {colors.map((c) => <option key={c}>{c}</option>)}
+                    </select>
+                  </td>
+                  <td className="border p-2">
+                    <select value={item.endColor} onChange={(e) => updateItem(item.id, "endColor", e.target.value)} className="border p-1">
+                      {colors.map((c) => <option key={c}>{c}</option>)}
+                    </select>
+                  </td>
+                  <td className="border p-2">
+                    <select value={item.guideType} onChange={(e) => updateItem(item.id, "guideType", e.target.value)} className="border p-1" disabled={item.sirka > 2900}>
+                      <option value="PP53">PP53</option>
+                      <option value="PP68">PP68</option>
+                    </select>
+                  </td>
+                  <td className="border p-2">{item.cenaBezDPH.toFixed(2)} Kč</td>
+                  <td className="border p-2">{item.cenaSDPH.toFixed(2)} Kč</td>
+                  <td className="border p-2 text-center">
+                    <button onClick={() => deleteItem(item.id)} className="px-2 py-1 bg-red-500 text-white rounded">Smazat</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          <div className="mt-6">
+            <h3 className="text-lg font-semibold mb-2">Doplňky</h3>
+            {accessoriesList.map((acc) => (
+              <div key={acc.id} className="flex items-center justify-between mb-2">
+                <span>{acc.name} ({acc.price} Kč/ks)</span>
+                <input
+                  type="number"
+                  min="0"
+                  value={accessories[acc.id] || 0}
+                  onChange={(e) => setAccessories({ ...accessories, [acc.id]: +e.target.value })}
+                  className="border p-1 w-20"
+                />
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-4 p-4 bg-gray-100 rounded-lg">
+            <p><strong>Celkem bez DPH:</strong> {totalBezDPH.toFixed(2)} Kč</p>
+            <p><strong>Celkem s DPH:</strong> {totalSDPH.toFixed(2)} Kč</p>
+          </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Galerie -->
-    <section id="gallery">
-      <h2>Galerie</h2>
-      <p class="section-lead">Ukázky reálných instalací rolet SollarRoll.</p>
-      <div class="gallery">
-        <img src="panelovy_dum.png" alt="Instalace na panelovém domě">
-        <img src="roh.png" alt="Instalace na světlém rodinném domě">
-        <img src="rd.png" alt="Roleta na rodinném domě">
-        <img src="panelak_hneda.png" alt="Tmavé provedení na moderním domě">
-      </div>
-    </section>
-
-    <!-- Kontakt -->
-    <section id="contact">
-      <h2>Kontakt</h2>
-      <div class="card">
-        <p><strong>Svět rolet</strong><br>
-        E-mail: <a href="mailto:info@svetrolet.cz">info@svetrolet.cz</a><br>
-        Telefon: <a href="tel:+420602314106">+420 602 314 106</a></p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="wrap">
-      <small>© <span id="year"></span> Svět rolet. Všechna práva vyhrazena.</small>
+      )}
     </div>
-  </footer>
-
-  <script>
-    // Rok v patičce
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Schování / zobrazení navigace při scrollu
-    let lastScroll = 0;
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      const currentScroll = window.pageYOffset;
-      if (currentScroll <= 0) {
-        navbar.classList.remove('hidden');
-        return;
-      }
-      if (currentScroll > lastScroll && !navbar.classList.contains('hidden')) {
-        navbar.classList.add('hidden');
-      } else if (currentScroll < lastScroll && navbar.classList.contains('hidden')) {
-        navbar.classList.remove('hidden');
-      }
-      lastScroll = currentScroll;
-    });
-  </script>
-</body>
-</html>
+  );
+}
