@@ -44,8 +44,8 @@
       background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#1a1e27;font-weight:700;border:none;cursor:pointer;box-shadow:var(--shadow)}
     .cta:hover{transform:translateY(-1px)}
 
-    /* kotvy posun kvůli sticky headeru */
-    :target::before {content:"";display:block;height:100px;margin-top:-100px;} /* Bude upraveno JS */
+    /* kotvy posun kvůli sticky headeru - dynamicky nastaveno v JS */
+    :target::before {content:"";display:block;height:100px;margin-top:-100px;} 
 
     /* Hero */
     .hero{margin-top:40px;display:grid;grid-template-columns:1.1fr 0.9fr;align-items:center;gap:28px}
@@ -134,7 +134,7 @@
     <section class="hero">
       <div>
         <h1>Nezávislá solární roleta pro Váš stín, klid a bezpečí</h1>
-        <p class="lead">Prémiová roleta SollarRoll – bez kabeláže, tichý chod, chytré napájení a čistý design. Ideální pro novostavby i rekonstrukce.</p>
+        <p class="lead">Prémiová roleta SollarRoll – bez kabeláže, chytré napájení a čistý design. Ideální pro novostavby i rekonstrukce.</p>
         <div class="badge">Jednoduchá montáž<small>Kterou zvládne téměř každý</small></div>
       </div>
       <img src="roletarez.jpg" alt="Řez solární roletou SollarRoll" loading="lazy">
@@ -177,7 +177,7 @@
           <tbody>
             <tr><th>Dálkový ovladač pro 1 roletu</th><td>Základní ruční ovládání jedné rolety.</td></tr>
             <tr><th>Dálkový ovladač až pro 5 rolet</th><td>Možnost časování – automatické zavírání a otvírání rolet.</td></tr>
-            <tr><th>Dálkový ovladač až pro 15 rolet</th><td>Komplexní ovládání většího počtu rolet.</td></tr>
+            <tr><th>Dálkový ovladač až pro 15 roletu</th><td>Komplexní ovládání většího počtu rolet.</td></tr>
             <tr><th>Dálkový ovladač na zeď</th><td>Tlačítkové provedení pro 1 roletu – elegantní doplněk interiéru.</td></tr>
             <tr><th>Smart Hub</th><td>Ovládání přes mobilní aplikaci – vyžaduje Wi‑Fi a internet.</td></tr>
           </tbody>
@@ -270,7 +270,7 @@
             <tbody>
               <tr><th>Dálkový ovladač pro 1 roletu</th><td><input type="number" placeholder="Počet ks"></td></tr>
               <tr><th>Dálkový ovladač až pro 5 rolet</th><td><input type="number" placeholder="Počet ks"></td></tr>
-              <tr><th>Dálkový ovladač až pro 15 rolet</th><td><input type="number" placeholder="Počet ks"></td></tr>
+              <tr><th>Dálkový ovladač až pro 15 roletu</th><td><input type="number" placeholder="Počet ks"></td></tr>
               <tr><th>Dálkový ovladač na zeď</th><td><input type="number" placeholder="Počet ks"></td></tr>
               <tr><th>Smart Hub</th><td><input type="number" placeholder="Počet ks"></td></tr>
             </tbody>
@@ -314,4 +314,45 @@
     // Rok do patičky
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Nový kód pro Smart
+    // Opravený kód pro Smart Sticky Header (Skrýt dolů, Zobrazit nahoru)
+    let lastScrollTop = 0;
+    const nav = document.querySelector('.nav');
+    
+    // Funkce pro aktualizaci posunu kotvy (kvůli fixed headeru)
+    const updateAnchorPadding = () => {
+      const navHeight = nav.offsetHeight;
+      const styleElement = document.getElementById('anchor-padding-style') || document.createElement('style');
+      styleElement.id = 'anchor-padding-style';
+      // Nastavíme padding pro :target, aby obsah nejel pod fixed header
+      styleElement.innerHTML = `:target::before {content:"";display:block;height:${navHeight + 20}px;margin-top:-${navHeight + 20}px;}`;
+      document.head.appendChild(styleElement);
+    };
+
+    // Obsluhujeme skrývání/objevování navigace
+    window.addEventListener('scroll', function() {
+      const navHeight = nav.offsetHeight;
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      // Pohyb nahoru A nejsme na úplném začátku: ZOBRAZÍME banner
+      if (scrollTop < lastScrollTop && scrollTop > navHeight) {
+        nav.classList.remove('nav-hidden');
+      } 
+      // Pohyb dolů A nejsme na úplném začátku: SKRYJEME banner
+      else if (scrollTop > lastScrollTop && scrollTop > navHeight) {
+        nav.classList.add('nav-hidden');
+      } 
+      // Jsme na úplném začátku stránky (úplně nahoře), vždy ZOBRAZÍME banner
+      else if (scrollTop <= navHeight) {
+          nav.classList.remove('nav-hidden');
+      }
+      
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    });
+
+    // Aktualizace kotvy při načtení a resize (v případě změny velikosti)
+    window.addEventListener('load', updateAnchorPadding);
+    window.addEventListener('resize', updateAnchorPadding);
+    
+  </script>
+</body>
+</html>
