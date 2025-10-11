@@ -20,7 +20,7 @@
       --radius:18px;
     }
     *{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.6}
+    body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.6;scroll-behavior:smooth;}
     a{color:var(--gold)}
     .wrap{max-width:1200px;margin:0 auto;padding:24px}
 
@@ -33,12 +33,12 @@
     .cta{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#1a1e27;font-weight:700;border:none;cursor:pointer;box-shadow:var(--shadow)}
     .cta:hover{transform:translateY(-1px)}
 
-    /* Posun při kliknutí na odkaz */
+    /* Posun při kliknutí */
     :target::before {
       content: "";
       display: block;
-      height: 100px; /* výška posunu */
-      margin-top: -100px;
+      height: 120px;
+      margin-top: -120px;
     }
 
     /* Hero */
@@ -85,6 +85,62 @@
     /* Galerie */
     .gallery{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));margin-top:24px}
     .gallery img{width:100%;height:200px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow)}
+
+    /* Formulář */
+    .quote-form {
+      background: var(--card);
+      padding: 32px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .form-grid .full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,.1);
+      background: #1a1f2b;
+      color: var(--text);
+      font-size: 16px;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 2px rgba(202,166,106,.2);
+    }
+
+    .checkbox label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    button.cta {
+      margin-top: 20px;
+      padding: 14px 26px;
+      font-size: 18px;
+    }
 
     footer{margin-top:72px;padding:28px 0;color:var(--muted);border-top:1px solid rgba(255,255,255,.06);text-align:center}
   </style>
@@ -175,6 +231,116 @@
       </div>
     </section>
 
+    <!-- Poptávkový formulář -->
+    <section id="form">
+      <h2>Nezávazná poptávka</h2>
+      <p class="section-lead">Vyplňte údaje a my vám připravíme přesnou cenovou nabídku na míru.</p>
+
+      <form class="quote-form" action="#" method="post" enctype="multipart/form-data">
+        <div class="form-grid">
+          <div>
+            <label for="name">Jméno a příjmení *</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+
+          <div>
+            <label for="email">E-mail *</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+
+          <div>
+            <label for="phone">Telefon *</label>
+            <input type="tel" id="phone" name="phone" required>
+          </div>
+
+          <div class="full">
+            <label for="dimensions">Rozměry rolet (šířka × výška v mm) + počet kusů *</label>
+            <textarea id="dimensions" name="dimensions" rows="3" placeholder="Např. 1750×1450 – 2 ks, 900×1200 – 1 ks" required></textarea>
+          </div>
+
+          <!-- Barvy -->
+          <div>
+            <label for="box-color">Barva boxu *</label>
+            <select id="box-color" name="box-color" required>
+              <option value="">Vyberte</option>
+              <option>Stříbrná</option>
+              <option>Bílá</option>
+              <option>Hnědá RAL 8014</option>
+              <option>Tmavě hnědá RAL 8019</option>
+              <option>Antracit RAL 7016</option>
+              <option>Zlatý dub (dřevodekor)</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="guide-color">Barva vodících lišt *</label>
+            <select id="guide-color" name="guide-color" required>
+              <option value="">Vyberte</option>
+              <option>Stříbrná</option>
+              <option>Bílá</option>
+              <option>Hnědá RAL 8014</option>
+              <option>Tmavě hnědá RAL 8019</option>
+              <option>Antracit RAL 7016</option>
+              <option>Zlatý dub (dřevodekor)</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="slats-color">Barva pancíře rolety *</label>
+            <select id="slats-color" name="slats-color" required>
+              <option value="">Vyberte</option>
+              <option>Stříbrná</option>
+              <option>Bílá</option>
+              <option>Hnědá RAL 8014</option>
+              <option>Tmavě hnědá RAL 8019</option>
+              <option>Antracit RAL 7016</option>
+              <option>Zlatý dub (dřevodekor)</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="bottom-color">Barva koncové lišty *</label>
+            <select id="bottom-color" name="bottom-color" required>
+              <option value="">Vyberte</option>
+              <option>Stříbrná</option>
+              <option>Bílá</option>
+              <option>Hnědá RAL 8014</option>
+              <option>Tmavě hnědá RAL 8019</option>
+              <option>Antracit RAL 7016</option>
+              <option>Zlatý dub (dřevodekor)</option>
+            </select>
+          </div>
+
+          <div class="full">
+            <label for="drilling">Předvrtání vodících lišt *</label>
+            <select id="drilling" name="drilling" required>
+              <option value="">Vyberte</option>
+              <option>Do okna</option>
+              <option>Do špalety</option>
+              <option>Bez předvrtání</option>
+            </select>
+          </div>
+
+          <div class="full">
+            <label for="controllers">Upřesnění počtu ovladačů</label>
+            <textarea id="controllers" name="controllers" rows="2" placeholder="Např. 2× ovladač pro 1 roletu, 1× pro 5 rolet s časovačem"></textarea>
+          </div>
+
+          <div class="full">
+            <label for="note">Poznámka</label>
+            <textarea id="note" name="note" rows="3" placeholder="Sem můžete napsat další požadavky..."></textarea>
+          </div>
+
+          <div class="full checkbox">
+            <label><input type="checkbox" required> Souhlasím se zpracováním osobních údajů pro účely poptávky.</label>
+          </div>
+        </div>
+
+        <button type="submit" class="cta">Odeslat poptávku</button>
+      </form>
+    </section>
+
+    <!-- Kontakt -->
     <section id="contact">
       <h2>Kontakt</h2>
       <div class="card">
