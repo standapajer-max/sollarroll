@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SollarRoll – Předokenní roleta se solárním pohonem</title>
+  <meta name="description" content="SollarRoll – nezávislá solární předokenní roleta pro váš stín, klid a bezpečí. Bez kabelů, tichý chod, prémiové zpracování." />
+  <meta name="theme-color" content="#0b0e13" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="SollarRoll – Solární předokenní roleta" />
+  <meta property="og:description" content="Nezávislá solární roleta pro Váš stín, klid a bezpečí." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/images/og-sollarroll.jpg" />
+  <meta property="og:url" content="https://example.com" />
+  <!-- Favicon (inline SVG) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop stop-color='%23caa66a'/%3E%3Cstop offset='1' stop-color='%23f0d28a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' fill='%230b0e13'/%3E%3Cpath d='M20 70h60v6H20zM25 25h50v34H25z' fill='url(%23g)'/%3E%3Crect x='30' y='30' width='40' height='6' rx='2' fill='%23e8e0c0'/%3E%3Crect x='30' y='40' width='40' height='6' rx='2' fill='%23d4c69a'/%3E%3Crect x='30' y='50' width='40' height='6' rx='2' fill='%23bca56e'/%3E%3C/svg%3E" />
+  <style>
+    :root{
+      --bg:#0b0e13;           /* temné pozadí */
+      --card:#121722;         /* karty */
+      --muted:#8892a6;        /* sekundární text */
+      --text:#f5f7fb;         /* primární text */
+      --gold:#caa66a;         /* zlatý akcent */
+      --gold-2:#f0d28a;       /* světlejší akcent */
+      --ok:#79d2a6;           /* zelený accent pro bullet/odrážky */
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--text);font-family:System-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;line-height:1.6}
+    a{color:var(--gold)}
+    .wrap{max-width:1200px;margin:0 auto;padding:24px}
+    header.nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#0b0e13 0%,rgba(11,14,19,.85) 100%);backdrop-filter:saturate(120%) blur(6px);border-bottom:1px solid rgba(202,166,106,.15)}
+    .nav-inner{display:flex;align-items:center;gap:18px;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.4px}
+    .brand svg{width:28px;height:28px}
+    .cta{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#1a1e27;font-weight:700;border:none;cursor:pointer;box-shadow:var(--shadow)}
+    .cta:hover{transform:translateY(-1px)}
+
+    /* Hero */
+    .hero{position:relative;overflow:hidden}
+    .hero-card{display:grid;grid-template-columns:1.1fr 0.9fr;gap:28px;align-items:center;background:radial-gradient(80% 120% at 20% 10%, rgba(202,166,106,.18) 0%, rgba(202,166,106,0) 55%), linear-gradient(180deg,#0c0f15 0%, #0b0e13 100%);border:1px solid rgba(202,166,106,.18);border-radius:var(--radius);padding:42px;box-shadow:var(--shadow)}
+    .hero h1{font-size:clamp(28px,4vw,48px);line-height:1.15;margin:0 0 12px}
+    .hero p.lead{font-size:clamp(16px,2vw,20px);color:var(--muted);margin:0 0 24px}
+    .hero-visual{position:relative;width:100%;aspect-ratio:4/3;border-radius:14px;background:linear-gradient(160deg,#0e1219,#0a0d13);border:1px solid rgba(255,255,255,.06);box-shadow:var(--shadow);overflow:hidden}
+    .hero-visual .slats{position:absolute;inset:0;display:grid;grid-template-rows:repeat(8,1fr);}
+    .hero-visual .slat{margin:10px;border-radius:8px;background:linear-gradient(180deg,#1a222f 0%,#121722 100%);border:1px solid rgba(255,255,255,.06)}
+    .solar-badge{position:absolute;top:14px;left:14px;background:rgba(202,166,106,.12);color:var(--gold-2);padding:8px 12px;border:1px solid rgba(202,166,106,.35);border-radius:12px;font-weight:600;font-size:14px;backdrop-filter:blur(4px)}
+
+    /* Sections */
+    section{margin:56px 0}
+    h2{font-size:clamp(22px,3vw,32px);margin:0 0 10px}
+    p.section-lead{color:var(--muted);margin:0 0 24px}
+    .grid{display:grid;gap:20px}
+    @media(min-width:900px){.grid.cols-3{grid-template-columns:repeat(3,1fr)}.grid.cols-2{grid-template-columns:repeat(2,1fr)}}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+
+    .feature{display:flex;gap:14px}
+    .feature svg{width:28px;height:28px;flex:0 0 28px}
+    .muted{color:var(--muted)}
+
+    /* Specs */
+    .specs{overflow:auto}
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:12px 14px;border-bottom:1px dashed rgba(255,255,255,.08)}
+    th{color:var(--muted);text-align:left;font-weight:600}
+
+    /* Colors */
+    .swatches{display:flex;flex-wrap:wrap;gap:12px}
+    .swatch{width:44px;height:44px;border-radius:10px;border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow)}
+    .note{font-size:14px;color:var(--muted)}
+
+    /* Gallery */
+    .gallery{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
+    @media(min-width:900px){.gallery{grid-template-columns:repeat(4,1fr)}}
+    .gallery img{width:100%;height:180px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,.06);background:#0f131b}
+
+    /* Form */
+    .form-embed{position:relative;overflow:hidden;border-radius:var(--radius);border:1px solid rgba(202,166,106,.2);box-shadow:var(--shadow)}
+    .form-embed iframe{width:100%;height:720px;border:0;background:#0f131b}
+    .form-fallback{padding:16px;text-align:center}
+
+    /* Footer */
+    footer{margin-top:72px;padding:28px 0;color:var(--muted);border-top:1px solid rgba(255,255,255,.06)}
+
+    /* Utilities */
+    .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:999px;border:1px solid rgba(202,166,106,.35);color:var(--gold-2);text-decoration:none}
+    .btn:hover{background:rgba(202,166,106,.08)}
+    .visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <div class="brand" aria-label="SollarRoll">
+        <svg viewBox="0 0 120 120" role="img" aria-hidden="true">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop stop-color="#caa66a" />
+              <stop offset="1" stop-color="#f0d28a" />
+            </linearGradient>
+          </defs>
+          <rect width="120" height="120" rx="18" fill="#0b0e13" />
+          <path d="M20 85h80v8H20zM26 28h68v44H26z" fill="url(#g1)"/>
+          <rect x="32" y="34" width="56" height="8" rx="3" fill="#e8e0c0"/>
+          <rect x="32" y="48" width="56" height="8" rx="3" fill="#d9cfa6"/>
+          <rect x="32" y="62" width="56" height="8" rx="3" fill="#c2a96f"/>
+        </svg>
+        <span>SollarRoll</span>
+      </div>
+      <div class="actions">
+        <a href="#specs" class="btn">Technické parametry</a>
+        <a href="#form" class="cta">Chci nezávaznou nabídku</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-card">
+        <div>
+          <h1 id="hero-title">Nezávislá solární roleta pro Váš stín, klid a bezpečí</h1>
+          <p class="lead">Prémiová předokenní roleta <strong>SollarRoll</strong> se solárním pohonem. Bez kabeláže, tichý chod, chytré napájení a čistý design. Ideální pro novostavby i rekonstrukce.</p>
+          <div class="actions">
+            <a href="#benefits" class="btn">Proč SollarRoll</a>
+            <a href="#form" class="cta">Poptat teď</a>
+          </div>
+        </div>
+        <!-- Visual (vektorová grafika rolety + odlesky) -->
+        <div class="hero-visual" aria-hidden="true">
+          <div class="solar-badge">Solární pohon · bez kabelů</div>
+          <div class="slats">
+            <div class="slat"></div><div class="slat"></div><div class="slat"></div><div class="slat"></div>
+            <div class="slat"></div><div class="slat"></div><div class="slat"></div><div class="slat"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section id="benefits" aria-labelledby="benefits-title">
+      <h2 id="benefits-title">Klíčové výhody</h2>
+      <p class="section-lead">Efektivita, komfort a bezpečí v jednom řešení – bez starostí s elektřinou.</p>
+      <div class="grid cols-3">
+        <div class="card feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <div>
+            <h3>Chytrý solární pohon</h3>
+            <p class="muted">Automatické a tiché ovládání. Bez přívodu elektřiny, šetří čas i náklady.</p>
+          </div>
+        </div>
+        <div class="card feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12h16"/><path d="M12 4v16"/><rect x="3" y="3" width="18" height="18" rx="3"/></svg>
+          <div>
+            <h3>Tepelný i světelný komfort</h3>
+            <p class="muted">Zabraňuje přehřívání v létě a chrání soukromí. V zimě pomáhá snižovat ztráty tepla.</p>
+          </div>
+        </div>
+        <div class="card feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l7 4v6c0 5-7 8-7 8s-7-3-7-8V7l7-4z"/></svg>
+          <div>
+            <h3>Bezpečí a odolnost</h3>
+            <p class="muted">Robustní provedení a kvalitní materiály. Prémiová povrchová úprava pro dlouhou životnost.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPECS -->
+    <section id="specs" aria-labelledby="specs-title">
+      <h2 id="specs-title">Technické parametry</h2>
+      <p class="section-lead">Zakázková výroba na míru – rozměry přizpůsobíme vašim oknům. Široká nabídka barev.</p>
+      <div class="card specs">
+        <table aria-label="Specifikace SollarRoll">
+          <tbody>
+            <tr><th>Napájení</th><td>Integrovaný solární panel + akumulátor (bez přívodu 230 V)</td></tr>
+            <tr><th>Ovládání</th><td>Tlačítkové / dálkové, volitelně chytrá domácnost (popis přidejte dle nabídky)</td></tr>
+            <tr><th>Materiál lamel</th><td>Hliník s povrchovou úpravou (práškové lakování)</td></tr>
+            <tr><th>Rozměry</th><td>Výroba na míru dle požadavků zákazníka</td></tr>
+            <tr><th>Barevná provedení</th><td>Více variant (viz vzorník níže)</td></tr>
+            <tr><th>Hlučnost</th><td>Tichý provoz</td></tr>
+            <tr><th>Záruka</th><td>Standardně 24 měsíců (upravte dle vaší politiky)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card" aria-label="Vzorník barev">
+        <h3>Vzorník barev</h3>
+        <p class="note">Ukázkové barvy. Nahraďte podle skutečné nabídky.</p>
+        <div class="swatches" role="list">
+          <div class="swatch" style="background:#222" title="Antracit" role="listitem"></div>
+          <div class="swatch" style="background:#444" title="Grafit" role="listitem"></div>
+          <div class="swatch" style="background:#8c8c8c" title="Hliník" role="listitem"></div>
+          <div class="swatch" style="background:#6b4f2e" title="Bronz" role="listitem"></div>
+          <div class="swatch" style="background:#bca66e" title="Písková" role="listitem"></div>
+          <div class="swatch" style="background:#ffffff" title="Bílá" role="listitem"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" aria-labelledby="gallery-title">
+      <h2 id="gallery-title">Galerie</h2>
+      <p class="section-lead">Kombinace reálných instalací a ilustračních vizualizací pro představu vzhledu v exteriéru.</p>
+      <div class="gallery" aria-live="polite">
+        <!-- Nahraďte src odkazy vašimi fotkami z Google Drive / uložené v /images -->
+        <img src="/images/real-01.jpg" alt="Instalace SollarRoll – detail lamel" loading="lazy" />
+        <img src="/images/real-02.jpg" alt="Pohled na roletu u moderní fasády" loading="lazy" />
+        <img src="/images/viz-01.jpg" alt="Vizualizace – roleta se solárním panelem" loading="lazy" />
+        <img src="/images/viz-02.jpg" alt="Vizualizace – roleta v tmavém provedení" loading="lazy" />
+      </div>
+      <p class="note">Tip: Uložte své fotky do složky <code>/images</code> v repozitáři a zde upravte cesty <code>src</code>.</p>
+    </section>
+
+    <!-- FORM -->
+    <section id="form" aria-labelledby="form-title">
+      <h2 id="form-title">Nezávazná poptávka</h2>
+      <p class="section-lead">Vyplňte prosím své údaje a specifikaci. Ozveme se s přesnou kalkulací.</p>
+      <div class="form-embed card">
+        <!-- 1) Až vytvoříte Google Formulář, vložte jeho EMBED odkaz do src níže -->
+        <!-- Příklad tvaru: https://docs.google.com/forms/d/e/FORM_ID/viewform?embedded=true -->
+        <iframe title="Poptávkový formulář SollarRoll" src="https://docs.google.com/forms/d/e/FORM_ID/viewform?embedded=true" allowfullscreen></iframe>
+        <div class="form-fallback">
+          <p class="note">Pokud se formulář nezobrazuje, <a href="https://docs.google.com/forms/d/e/FORM_ID/viewform" target="_blank" rel="noopener">otevřete ho zde</a>.</p>
+        </div>
+      </div>
+      <ul class="note">
+        <li>Odpovědi z formuláře se ukládají do Google Tabulky, kterou lze sdílet více kolegům.</li>
+        <li>Ve formuláři doporučujeme pole: Jméno, E‑mail, Telefon, Lokalita, Rozměry/počet oken, Preferovaná barva, Termín montáže, Poznámka.</li>
+      </ul>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Kontakt</h2>
+      <div class="card">
+        <p><strong>SollarRoll</strong><br/>
+          E‑mail: <a href="mailto:info@sollarroll.cz">info@sollarroll.cz</a><br/>
+          Telefon: <a href="tel:+420123456789">+420 123 456 789</a></p>
+        <p class="note">Upravte kontaktní údaje dle potřeby. Můžeme doplnit IČ/DIČ a odkaz na sociální sítě.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <small>© <span id="year"></span> SollarRoll. Všechna práva vyhrazena.</small>
+    </div>
+  </footer>
+
+  <script>
+    // Aktuální rok do patičky
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // Hladké skrolování pro kotvy
+    document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});}));
+  </script>
+
+  <!--
+  =====================
+  🧭 NASAZENÍ (shrnutí)
+  =====================
+  1) GitHub Pages
+     - Vytvořte repo např. `sollarroll-site`
+     - Soubor pojmenujte `index.html` a nahrajte do kořene.
+     - V Settings → Pages nastavte Source: Deploy from a branch → main → /(root).
+     - Stránka poběží na https://{uzivatel}.github.io/sollarroll-site
+
+  2) Obrázky
+     - Vytvořte složku /images a nahrajte sem fotky z Google Drive.
+     - Upravte <img src="/images/..."> v sekci Galerie a og:image v <head>.
+
+  3) Google Formulář
+     - Vytvořte formulář ve svém Google účtu (Forms).
+     - Nabídka Odeslat → ikona < > → vložit → zkopírujte embed URL do <iframe src="...">.
+     - Sdílení odpovědí: v Google Sheets → Sdílet → přidejte e‑maily kolegů.
+
+  4) Doména (Forpsi) – až budete mít přístup
+     - Přidejte záznamy DNS:
+       a) CNAME `www` → {uzivatel}.github.io
+       b) A záznamy pro apex doménu (sollarroll.cz) → GitHub IP (aktuální IP viz dokumentace GitHub Pages)
+       c) V repozitáři vytvořte soubor `CNAME` s obsahem `sollarroll.cz` nebo `www.sollarroll.cz`.
+
+  5) SEO + sociální sítě
+     - Upravte <title>, <meta name="description"> a og:* tagy dle finálních fotek/textů.
+  -->
+</body>
+</html>
