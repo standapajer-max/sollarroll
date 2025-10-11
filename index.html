@@ -14,6 +14,7 @@
       --text:#f5f7fb;
       --gold:#caa66a;
       --gold-2:#f0d28a;
+      --accent:#f0b35c;
       --shadow:0 10px 30px rgba(0,0,0,.35);
       --radius:18px;
     }
@@ -32,19 +33,39 @@
     .section-lead{color:var(--muted);margin-bottom:20px}
     .card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
     .note{color:var(--muted);font-size:14px}
-
     .gallery img, .colors img{width:100%;border-radius:12px;border:1px solid rgba(255,255,255,.08);height:180px;object-fit:cover}
     .colors{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin-top:24px;text-align:center}
     .colors p{margin-top:8px;color:var(--muted)}
     .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:999px;border:1px solid rgba(202,166,106,.35);color:var(--gold-2);text-decoration:none}
     .btn:hover{background:rgba(202,166,106,.08)}
     footer{margin-top:72px;padding:28px 0;text-align:center;color:var(--muted);border-top:1px solid rgba(255,255,255,.06)}
+
+    /* Nálepka */
+    .sticker{
+      position:absolute;
+      top:20px;
+      right:-40px;
+      background:linear-gradient(135deg,#f0b35c,#f8d37a);
+      color:#1a1e27;
+      font-weight:700;
+      padding:8px 32px;
+      transform:rotate(12deg);
+      border-radius:8px;
+      box-shadow:0 4px 10px rgba(0,0,0,.3);
+      animation:float 4s ease-in-out infinite;
+    }
+    @keyframes float{
+      0%,100%{transform:rotate(12deg) translateY(0);}
+      50%{transform:rotate(12deg) translateY(-6px);}
+    }
+    .hero{position:relative;margin-top:40px}
+    .gallery{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));margin-top:20px}
   </style>
 </head>
 <body>
   <header class="nav">
     <div class="brand">
-      <img src="/logo_svet_rolet.png" alt="Svět rolet logo">
+      <img src="logo_svet_rolet.png" alt="Svět rolet logo">
       <span>Svět rolet</span>
     </div>
     <div class="actions">
@@ -56,9 +77,9 @@
   <main class="wrap">
     <!-- HERO -->
     <section class="hero">
+      <div class="sticker">Jednoduchá montáž</div>
       <h1>Nezávislá solární roleta pro Váš stín, klid a bezpečí</h1>
-      <p class="section-lead">Prémiová roleta SollarRoll – bez kabeláže, tichý chod, chytré napájení a čistý design.  
-      <strong>Jednoduchá montáž, kterou zvládne téměř každý.</strong></p>
+      <p class="section-lead">Prémiová roleta SollarRoll – bez kabeláže, tichý chod, chytré napájení a čistý design.</p>
       <div class="actions">
         <a href="#benefits" class="btn">Proč SollarRoll</a>
         <a href="#form" class="cta">Poptat teď</a>
@@ -86,12 +107,24 @@
       <h2>Barevné provedení</h2>
       <p class="section-lead">Vyberte si z oblíbených barevných variant, které ladí s moderní architekturou.</p>
       <div class="colors">
-        <div><img src="/stříbrná.jpg" alt="Stříbrná"><p>Stříbrná</p></div>
-        <div><img src="/bílá.jpg" alt="Bílá"><p>Bílá</p></div>
-        <div><img src="/hnědá.jpg" alt="Hnědá RAL 8014"><p>Hnědá RAL 8014</p></div>
-        <div><img src="/tmavě hnědá.jpg" alt="Tmavě hnědá RAL 8019"><p>Tmavě hnědá RAL 8019</p></div>
-        <div><img src="/antracit.jpg" alt="Antracit RAL 7016"><p>Antracit RAL 7016</p></div>
-        <div><img src="/zlatý dub.jpg" alt="Zlatý dub"><p>Dřevodekor Zlatý dub</p></div>
+        <div><img src="stříbrná.jpg" alt="Stříbrná"><p>Stříbrná</p></div>
+        <div><img src="bílá.jpg" alt="Bílá"><p>Bílá</p></div>
+        <div><img src="hnědá.jpg" alt="Hnědá RAL 8014"><p>Hnědá RAL 8014</p></div>
+        <div><img src="tmavě hnědá.jpg" alt="Tmavě hnědá RAL 8019"><p>Tmavě hnědá RAL 8019</p></div>
+        <div><img src="antracit.jpg" alt="Antracit RAL 7016"><p>Antracit RAL 7016</p></div>
+        <div><img src="zlatý dub.jpg" alt="Zlatý dub"><p>Dřevodekor Zlatý dub</p></div>
+      </div>
+    </section>
+
+    <!-- GALERIE -->
+    <section id="gallery">
+      <h2>Galerie</h2>
+      <p class="section-lead">Ukázky instalací a vizualizací rolet SollarRoll v reálném prostředí.</p>
+      <div class="gallery">
+        <img src="roleta řez.jpg" alt="Detail lamely SollarRoll">
+        <img src="panelový dům.png" alt="SollarRoll na panelovém domě">
+        <img src="světlý rodinný dům.png" alt="Instalace na světlém rodinném domě">
+        <img src="rodinný - upravený.png" alt="Tmavé provedení na moderním domě">
       </div>
     </section>
 
