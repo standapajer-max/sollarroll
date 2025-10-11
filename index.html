@@ -9,9 +9,8 @@
   <meta property="og:title" content="SollarRoll – Solární předokenní roleta" />
   <meta property="og:description" content="Nezávislá solární roleta pro Váš stín, klid a bezpečí." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="/images/Solar rolety.png" />
-  <meta property="og:url" content="https://example.com" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop stop-color='%23caa66a'/%3E%3Cstop offset='1' stop-color='%23f0d28a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' fill='%230b0e13'/%3E%3Cpath d='M20 70h60v6H20zM25 25h50v34H25z' fill='url(%23g)'/%3E%3Crect x='30' y='30' width='40' height='6' rx='2' fill='%23e8e0c0'/%3E%3Crect x='30' y='40' width='40' height='6' rx='2' fill='%23d4c69a'/%3E%3Crect x='30' y='50' width='40' height='6' rx='2' fill='%23bca56e'/%3E%3C/svg%3E" />
+  <meta property="og:image" content="/images/Solární rolety.png" />
+  <meta property="og:url" content="https://standapajer-max.github.io/sollaroll/" />
   <style>
     :root{
       --bg:#0b0e13;
@@ -40,6 +39,8 @@
     .feature{text-align:left}
     .color{text-align:center}
     .swatch{width:100%;height:140px;object-fit:cover;border-radius:12px;margin-bottom:12px;border:1px solid rgba(255,255,255,.08)}
+    .gallery{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .gallery img{width:100%;height:200px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,.08)}
     .muted{color:var(--muted)}
   </style>
 </head>
@@ -55,6 +56,7 @@
   </header>
 
   <main class="wrap">
+    <!-- HERO -->
     <section class="hero">
       <h1>Nezávislá solární roleta pro Váš stín, klid a bezpečí</h1>
       <p class="lead">Prémiová roleta SollarRoll – bez kabeláže, tichý chod, chytré napájení a čistý design.</p>
@@ -95,12 +97,24 @@
       <h2>Barevné provedení</h2>
       <p class="section-lead">Rolety SollarRoll nabízíme v několika oblíbených odstínech, které ladí s moderní architekturou i tradičními stavbami.</p>
       <div class="grid cols-3">
-        <div class="card color"><img class="swatch" src="https://www.sunprotect.aluprof.com/sites/default/files/styles/940x650/public/systems-colors/01_srebrny_0.jpg?itok=nmIGuJPZ" alt="Stříbrná"><h3>Stříbrná</h3><p class="muted">Elegantní kovový vzhled vhodný k moderním fasádám.</p></div>
-        <div class="card color"><img class="swatch" src="https://sunprotect.aluprof.com/sites/default/files/styles/940x650/public/systems-colors/02_bialy.jpg?itok=V79JyRYV" alt="Bílá"><h3>Bílá</h3><p class="muted">Čistá a univerzální barva pro všechny typy domů.</p></div>
-        <div class="card color"><img class="swatch" src="https://sunprotect.aluprof.com/sites/default/files/styles/940x650/public/systems-colors/09_brazowy.jpg?itok=iqDK_K88" alt="Hnědá RAL8014"><h3>Hnědá – RAL 8014</h3><p class="muted">Teplý přírodní odstín, který ladí s dřevěnými prvky fasády.</p></div>
-        <div class="card color"><img class="swatch" src="https://sunprotect.aluprof.com/sites/default/files/styles/940x650/public/systems-colors/08_ciemnobrazowy.jpg?itok=HYrMDBUS" alt="Tmavě hnědá RAL8019"><h3>Tmavě hnědá – RAL 8019</h3><p class="muted">Elegantní hluboký odstín pro moderní vzhled domu.</p></div>
-        <div class="card color"><img class="swatch" src="https://www.sunprotect.aluprof.com/sites/default/files/styles/940x650/public/systems-colors/23_szary_antracyt.jpg?itok=oJkJJ0FQ" alt="Antracit RAL7016"><h3>Antracit – RAL 7016</h3><p class="muted">Trendy odstín šedé – perfektně ladí s tmavými okny a moderními fasádami.</p></div>
-        <div class="card color"><img class="swatch" src="https://www.sunprotect.aluprof.com/sites/default/files/styles/940x650/public/systems-colors/30_zloty_dab.jpg?itok=Y1u_O3jg" alt="Dřevodekor zlatý dub"><h3>Dřevodekor – zlatý dub</h3><p class="muted">Přírodní vzhled dřeva s teplým zlatavým odstínem.</p></div>
+        <div class="card color"><img class="swatch" src="/stříbrná.jpg" alt="Stříbrná"><h3>Stříbrná</h3><p class="muted">Elegantní kovový vzhled vhodný k moderním fasádám.</p></div>
+        <div class="card color"><img class="swatch" src="/bílá.jpg" alt="Bílá"><h3>Bílá</h3><p class="muted">Čistá a univerzální barva pro všechny typy domů.</p></div>
+        <div class="card color"><img class="swatch" src="/hnědá.jpg" alt="Hnědá RAL8014"><h3>Hnědá – RAL 8014</h3><p class="muted">Teplý přírodní odstín, který ladí s dřevěnými prvky fasády.</p></div>
+        <div class="card color"><img class="swatch" src="/tmavě hnědá.jpg" alt="Tmavě hnědá RAL8019"><h3>Tmavě hnědá – RAL 8019</h3><p class="muted">Elegantní hluboký odstín pro moderní vzhled domu.</p></div>
+        <div class="card color"><img class="swatch" src="/antracit.jpg" alt="Antracit RAL7016"><h3>Antracit – RAL 7016</h3><p class="muted">Trendy odstín šedé – perfektně ladí s tmavými okny a moderními fasádami.</p></div>
+        <div class="card color"><img class="swatch" src="/zlatý dub.jpg" alt="Dřevodekor zlatý dub"><h3>Dřevodekor – zlatý dub</h3><p class="muted">Přírodní vzhled dřeva s teplým zlatavým odstínem.</p></div>
+      </div>
+    </section>
+
+    <!-- GALERIE -->
+    <section id="gallery">
+      <h2>Galerie</h2>
+      <p class="section-lead">Reálné instalace a vizualizace pro inspiraci.</p>
+      <div class="gallery">
+        <img src="/roleta řez.jpg" alt="Detail lamel SollarRoll">
+        <img src="/panelový dům.png" alt="SollarRoll na moderním panelovém domě">
+        <img src="/světlý rodinný dům.png" alt="Světlý rodinný dům s roletou SollarRoll">
+        <img src="/rodinný - upravený.png" alt="Rodinný dům s tmavým provedením SollarRoll">
       </div>
     </section>
 
@@ -110,6 +124,7 @@
       <iframe src="https://docs.google.com/forms/d/e/FORM_ID/viewform?embedded=true" width="100%" height="720" frameborder="0">Načítání…</iframe>
     </section>
 
+    <!-- KONTAKT -->
     <section id="contact">
       <h2>Kontakt</h2>
       <p><strong>SollarRoll</strong><br>E-mail: <a href="mailto:info@sollarroll.cz">info@sollarroll.cz</a><br>Telefon: <a href="tel:+420123456789">+420 123 456 789</a></p>
