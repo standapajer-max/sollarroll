@@ -4,13 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Svět rolet – Předokenní roleta se solárním pohonem</title>
-  <meta name="description" content="Nezávislá solární roleta pro váš stín, klid a bezpečí. Bez kabelů, tichý chod, prémiové zpracování." />
+  <meta name="description" content="Nezávislá solární roleta pro Váš stín, klid a bezpečí. Jednoduchá montáž, kterou zvládne téměř každý." />
   <meta name="theme-color" content="#0b0e13" />
-  <meta property="og:title" content="Svět rolet – Solární předokenní roleta" />
-  <meta property="og:description" content="Nezávislá solární roleta pro Váš stín, klid a bezpečí." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="/images/Solární rolety.png" />
-  <meta property="og:url" content="https://standapajer-max.github.io/sollaroll/" />
   <style>
     :root{
       --bg:#0b0e13;
@@ -23,39 +18,38 @@
       --radius:18px;
     }
     *{box-sizing:border-box}
-    html,body{margin:0;background:var(--bg);color:var(--text);font-family:System-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;line-height:1.6}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:System-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif;line-height:1.6}
     a{color:var(--gold)}
     .wrap{max-width:1200px;margin:0 auto;padding:24px}
-    header.nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#0b0e13 0%,rgba(11,14,19,.85) 100%);backdrop-filter:saturate(120%) blur(6px);border-bottom:1px solid rgba(202,166,106,.15)}
-    .nav-inner{display:flex;align-items:center;gap:18px;justify-content:space-between}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.4px}
-    .brand img{height:40px;width:auto;border-radius:8px}
-    .cta{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#1a1e27;font-weight:700;border:none;cursor:pointer;box-shadow:var(--shadow)}
+    header.nav{position:sticky;top:0;background:#0b0e13;display:flex;align-items:center;justify-content:space-between;padding:10px 24px;border-bottom:1px solid rgba(255,255,255,.08);z-index:50}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700}
+    .brand img{height:36px;border-radius:8px}
+    .cta{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#1a1e27;font-weight:700;border:none;cursor:pointer;box-shadow:var(--shadow);text-decoration:none}
+    .cta:hover{transform:translateY(-1px)}
     section{margin:56px 0}
-    h2{font-size:clamp(22px,3vw,32px);margin:0 0 10px}
-    p.section-lead{color:var(--muted);margin:0 0 24px}
-    .grid{display:grid;gap:20px}
-    @media(min-width:900px){.grid.cols-3{grid-template-columns:repeat(3,1fr)}.grid.cols-4{grid-template-columns:repeat(4,1fr)}}
+    h1,h2,h3{margin:0 0 12px}
+    h1{font-size:clamp(28px,4vw,46px);line-height:1.15}
+    .section-lead{color:var(--muted);margin-bottom:20px}
     .card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
-    .feature{text-align:left}
-    .color{text-align:center}
-    .swatch{width:100%;height:140px;object-fit:cover;border-radius:12px;margin-bottom:12px;border:1px solid rgba(255,255,255,.08)}
-    .gallery{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-    .gallery img{width:100%;height:200px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,.08)}
-    .muted{color:var(--muted)}
+    .note{color:var(--muted);font-size:14px}
+
+    .gallery img, .colors img{width:100%;border-radius:12px;border:1px solid rgba(255,255,255,.08);height:180px;object-fit:cover}
+    .colors{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin-top:24px;text-align:center}
+    .colors p{margin-top:8px;color:var(--muted)}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:999px;border:1px solid rgba(202,166,106,.35);color:var(--gold-2);text-decoration:none}
+    .btn:hover{background:rgba(202,166,106,.08)}
+    footer{margin-top:72px;padding:28px 0;text-align:center;color:var(--muted);border-top:1px solid rgba(255,255,255,.06)}
   </style>
 </head>
 <body>
   <header class="nav">
-    <div class="wrap nav-inner">
-      <div class="brand">
-        <img src="/logo_svet_rolet.png" alt="Svět rolet logo">
-        <span>Svět rolet</span>
-      </div>
-      <div class="actions">
-        <a href="#specs" class="btn">Technické parametry</a>
-        <a href="#form" class="cta">Chci nezávaznou nabídku</a>
-      </div>
+    <div class="brand">
+      <img src="/logo_svet_rolet.png" alt="Svět rolet logo">
+      <span>Svět rolet</span>
+    </div>
+    <div class="actions">
+      <a href="#specs" class="btn">Technické parametry</a>
+      <a href="#form" class="cta">Chci nezávaznou nabídku</a>
     </div>
   </header>
 
@@ -63,7 +57,12 @@
     <!-- HERO -->
     <section class="hero">
       <h1>Nezávislá solární roleta pro Váš stín, klid a bezpečí</h1>
-      <p class="lead">Prémiová roleta SollarRoll – bez kabeláže, tichý chod, chytré napájení a čistý design.</p>
+      <p class="section-lead">Prémiová roleta SollarRoll – bez kabeláže, tichý chod, chytré napájení a čistý design.  
+      <strong>Jednoduchá montáž, kterou zvládne téměř každý.</strong></p>
+      <div class="actions">
+        <a href="#benefits" class="btn">Proč SollarRoll</a>
+        <a href="#form" class="cta">Poptat teď</a>
+      </div>
     </section>
 
     <!-- TECHNICKÉ PARAMETRY -->
@@ -74,7 +73,7 @@
           <li><strong>Napájení:</strong> solární panel + akumulátor – vše je již součástí rolety</li>
           <li><strong>Ovládání:</strong> dálkové nebo mobilní aplikace</li>
           <li><strong>Lamely:</strong> hliníkové lamely vyplněné PUR pěnou, povrchová úprava práškové lakování</li>
-          <li><strong>Vodící lišty:</strong> hliníkové vodící lišty, široké 53 nebo 68 mm</li>
+          <li><strong>Vodicí lišty:</strong> hliníkové vodicí lišty, široké 53 nebo 68 mm</li>
           <li><strong>Boxy rolet:</strong> hliníkové boxy 150, 165, 180 nebo 205 mm s práškovým lakováním</li>
           <li><strong>Výroba:</strong> rolety vyrábíme individuálně dle Vámi zadaného rozměru</li>
           <li><strong>Záruka:</strong> 24 měsíců</li>
@@ -82,49 +81,37 @@
       </div>
     </section>
 
-    <!-- OVLÁDACÍ PRVKY -->
-    <section id="controls">
-      <h2>Ovládací prvky</h2>
-      <p class="section-lead">Nabízíme několik variant ovládání pro maximální komfort a jednoduché používání.</p>
-      <div class="card">
-        <ul>
-          <li><strong>Dálkový ovladač pro 1 roletu</strong> – kompaktní a přehledné ovládání jednotlivých rolet.</li>
-          <li><strong>Dálkový ovladač pro až 5 rolet s možností časování</strong> – nastavte automatické otevření či zavření podle denní doby.</li>
-          <li><strong>Dálkový ovladač pro až 15 rolet</strong> – ideální pro větší domy nebo objekty.</li>
-          <li><strong>Dálkový ovladač na stěnu pro 1 roletu</strong> – elegantní řešení s pevným umístěním.</li>
-          <li><strong>SmartHub pro ovládání přes mobilní aplikaci</strong> – moderní řízení rolet odkudkoli pomocí telefonu.</li>
-        </ul>
+    <!-- BAREVNÉ PROVEDENÍ -->
+    <section id="colors">
+      <h2>Barevné provedení</h2>
+      <p class="section-lead">Vyberte si z oblíbených barevných variant, které ladí s moderní architekturou.</p>
+      <div class="colors">
+        <div><img src="/stříbrná.jpg" alt="Stříbrná"><p>Stříbrná</p></div>
+        <div><img src="/bílá.jpg" alt="Bílá"><p>Bílá</p></div>
+        <div><img src="/hnědá.jpg" alt="Hnědá RAL 8014"><p>Hnědá RAL 8014</p></div>
+        <div><img src="/tmavě hnědá.jpg" alt="Tmavě hnědá RAL 8019"><p>Tmavě hnědá RAL 8019</p></div>
+        <div><img src="/antracit.jpg" alt="Antracit RAL 7016"><p>Antracit RAL 7016</p></div>
+        <div><img src="/zlatý dub.jpg" alt="Zlatý dub"><p>Dřevodekor Zlatý dub</p></div>
       </div>
-    </section>
-
-    <!-- GALERIE -->
-    <section id="gallery">
-      <h2>Galerie</h2>
-      <p class="section-lead">Reálné instalace a vizualizace pro inspiraci.</p>
-      <div class="gallery">
-        <img src="/roleta řez.jpg" alt="Detail lamel SollarRoll">
-        <img src="/panelový dům.png" alt="SollarRoll na moderním panelovém domě">
-        <img src="/světlý rodinný dům.png" alt="Světlý rodinný dům s roletou SollarRoll">
-        <img src="/rodinný - upravený.png" alt="Rodinný dům s tmavým provedením SollarRoll">
-      </div>
-    </section>
-
-    <!-- FORMULÁŘ -->
-    <section id="form">
-      <h2>Nezávazná poptávka</h2>
-      <iframe src="https://docs.google.com/forms/d/e/FORM_ID/viewform?embedded=true" width="100%" height="720" frameborder="0">Načítání…</iframe>
     </section>
 
     <!-- KONTAKT -->
     <section id="contact">
       <h2>Kontakt</h2>
-      <p><strong>Svět rolet</strong><br>
-      E-mail: <a href="mailto:info@svetrolet.cz">info@svetrolet.cz</a><br>
-      Telefon: <a href="tel:+420602314106">602 314 106</a></p>
+      <div class="card">
+        <p><strong>Svět rolet</strong><br/>
+        E-mail: <a href="mailto:info@svetrolet.cz">info@svetrolet.cz</a><br/>
+        Telefon: <a href="tel:+420602314106">+420 602 314 106</a></p>
+      </div>
     </section>
   </main>
 
-  <footer><div class="wrap"><small>© <span id="year"></span> Svět rolet. Všechna práva vyhrazena.</small></div></footer>
-  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+  <footer>
+    <small>© <span id="year"></span> Svět rolet. Všechna práva vyhrazena.</small>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
