@@ -199,84 +199,108 @@
       <h2>Nezávazná poptávka</h2>
       <p class="section-lead">Vyplňte údaje a my vám připravíme přesnou cenovou nabídku na míru.</p>
 
-      <form id="quoteForm" action="https://formspree.io/f/XXXXYYYY" method="POST">
-        <input type="hidden" name="_subject" value="Nová poptávka – Svět rolet">
-        <input type="hidden" name="_redirect" value="dekujeme.html">
+     <form id="quoteForm" action="https://formspree.io/f/XXXXYYYY" method="POST">
+  <input type="hidden" name="_subject" value="Nová poptávka – Svět rolet">
+  <input type="hidden" name="_redirect" value="dekujeme.html">
 
-        <div class="form-grid">
-          <div><label>Jméno a příjmení *</label><input type="text" name="name" required></div>
-          <div><label>E-mail *</label><input type="email" name="email" required></div>
-          <div><label>Telefon *</label><input type="tel" name="phone" required></div>
+  <div class="form-grid">
+    <div><label>Jméno a příjmení *</label><input type="text" name="name" required></div>
+    <div><label>E-mail *</label><input type="email" name="email" required></div>
+    <div><label>Telefon *</label><input type="tel" name="phone" required></div>
 
-          <div class="full">
-            <label>Možnosti barev</label>
-            <div class="color-preview">
-              <div><span class="color-sample" style="background:#c0c0c0"></span>Stříbrná</div>
-              <div><span class="color-sample" style="background:#ffffff"></span>Bílá</div>
-              <div><span class="color-sample" style="background:#3d2b1f"></span>Hnědá</div>
-              <div><span class="color-sample" style="background:#2b2622"></span>Tmavě hnědá</div>
-              <div><span class="color-sample" style="background:#383e42"></span>Antracit</div>
-              <div><span class="color-sample" style="background:#b8860b"></span>Zlatý dub</div>
-            </div>
-            <img src="barvyumisteni.jpg" alt="Umístění barev" style="width:100%;max-width:600px;border-radius:12px;margin:10px 0;box-shadow:var(--shadow)">
-          </div>
+    <!-- 🎨 Výběr barev -->
+    <div class="full">
+      <h3 style="margin:10px 0;">Barevné provedení</h3>
+      <p class="section-lead" style="margin-bottom:10px;">Vyberte barvy jednotlivých částí rolety:</p>
 
-          <div class="full">
-            <label>Specifikace rolet *</label>
-            <div id="roles">
-              <div class="form-grid role-row">
-                <input type="number" name="width[]" placeholder="Šířka (mm)" required>
-                <input type="number" name="height[]" placeholder="Výška (mm)" required>
-                <input type="number" name="count[]" placeholder="Počet ks" required>
-                <select name="color[]">
-                  <option>Stříbrná</option>
-                  <option>Bílá</option>
-                  <option>Hnědá RAL8014</option>
-                  <option>Tmavě hnědá RAL8019</option>
-                  <option>Antracit RAL7016</option>
-                  <option>Zlatý dub</option>
-                </select>
-              </div>
-            </div>
-            <button type="button" onclick="addRole()" style="margin-top:10px;padding:8px 14px;border:none;border-radius:8px;background:var(--gold);color:#1a1e27;font-weight:700;cursor:pointer;">+ Přidat další roletu</button>
-          </div>
-
-          <div><label>Předvrtání vodicích lišt</label>
-            <select name="predvrtani">
-              <option>Do okna</option>
-              <option>Do špalety</option>
-              <option>Bez předvrtání</option>
-            </select>
-          </div>
-
-          <div><label>Počet ovladačů</label><input type="text" name="ovladace" placeholder="Např. 2× dálkový ovladač, 1× SmartHub"></div>
-
-          <div class="full"><label>Poznámka</label><textarea name="poznamka" rows="3" placeholder="Doplňující informace..."></textarea></div>
-
-          <div class="full"><label><input type="checkbox" required> Souhlasím se zpracováním osobních údajů pro účely nabídky.</label></div>
+      <div class="form-grid">
+        <div><label>Box</label>
+          <select name="color_box">
+            <option>Stříbrná</option><option>Bílá</option><option>Hnědá RAL8014</option>
+            <option>Tmavě hnědá RAL8019</option><option>Antracit RAL7016</option><option>Zlatý dub</option>
+          </select>
         </div>
-
-        <button type="submit" class="cta">Odeslat poptávku</button>
-      </form>
-    </section>
-
-    <section id="contact">
-      <h2>Kontakt</h2>
-      <div class="card">
-        <p><strong>Svět rolet</strong><br>
-        E-mail: <a href="mailto:info@svetrolet.cz">info@svetrolet.cz</a><br>
-        Telefon: <a href="tel:+420602314106">+420 602 314 106</a></p>
+        <div><label>Pancíř</label>
+          <select name="color_pancir">
+            <option>Stříbrná</option><option>Bílá</option><option>Hnědá RAL8014</option>
+            <option>Tmavě hnědá RAL8019</option><option>Antracit RAL7016</option><option>Zlatý dub</option>
+          </select>
+        </div>
+        <div><label>Koncová lišta</label>
+          <select name="color_koncova">
+            <option>Stříbrná</option><option>Bílá</option><option>Hnědá RAL8014</option>
+            <option>Tmavě hnědá RAL8019</option><option>Antracit RAL7016</option><option>Zlatý dub</option>
+          </select>
+        </div>
+        <div><label>Vodicí lišty</label>
+          <select name="color_vodici">
+            <option>Stříbrná</option><option>Bílá</option><option>Hnědá RAL8014</option>
+            <option>Tmavě hnědá RAL8019</option><option>Antracit RAL7016</option><option>Zlatý dub</option>
+          </select>
+        </div>
       </div>
-    </section>
-  </main>
 
-  <footer>
-    <div class="wrap">
-      <small>© <span id="year"></span> Svět rolet. Všechna práva vyhrazena.</small>
+      <div style="text-align:center;margin-top:14px;">
+        <img src="barvyumisteni.jpg" alt="Umístění barev" style="width:100%;max-width:400px;border-radius:10px;box-shadow:var(--shadow);opacity:0.9;">
+      </div>
     </div>
-  </footer>
 
-  <script>
+    <!-- 📏 Specifikace rolet -->
+    <div class="full">
+      <label>Specifikace rolet *</label>
+      <div id="roles">
+        <div class="form-grid role-row">
+          <input type="number" name="width[]" placeholder="Šířka (mm)" required>
+          <input type="number" name="height[]" placeholder="Výška (mm)" required>
+          <input type="number" name="count[]" placeholder="Počet ks" required>
+        </div>
+      </div>
+      <button type="button" onclick="addRole()" style="margin-top:10px;padding:8px 14px;border:none;border-radius:8px;background:var(--gold);color:#1a1e27;font-weight:700;cursor:pointer;">+ Přidat další roletu</button>
+    </div>
+
+    <!-- 🪟 Předvrtání -->
+    <div><label>Předvrtání vodicích lišt</label>
+      <select name="predvrtani">
+        <option>Do okna</option>
+        <option>Do špalety</option>
+        <option>Bez předvrtání</option>
+      </select>
+    </div>
+
+    <!-- 🎛️ Tabulka ovladačů -->
+    <div class="full">
+      <h3 style="margin:12px 0;">Ovládací prvky</h3>
+      <table style="width:100%;border-collapse:collapse;font-size:15px;">
+        <tr><th style="text-align:left;padding:6px;">Typ ovladače</th><th style="padding:6px;">Počet kusů</th></tr>
+        <tr><td>Dálkový ovladač pro 1 roletu</td><td><input type="number" name="ovl_1" min="0" style="width:80px;"></td></tr>
+        <tr><td>Dálkový ovladač až pro 5 rolet (časování)</td><td><input type="number" name="ovl_5" min="0" style="width:80px;"></td></tr>
+        <tr><td>Dálkový ovladač až pro 15 rolet</td><td><input type="number" name="ovl_15" min="0" style="width:80px;"></td></tr>
+        <tr><td>Nástěnný ovladač pro 1 roletu</td><td><input type="number" name="ovl_wall" min="0" style="width:80px;"></td></tr>
+        <tr><td>SmartHub pro mobilní ovládání</td><td><input type="number" name="ovl_hub" min="0" style="width:80px;"></td></tr>
+      </table>
+    </div>
+
+    <div class="full"><label>Poznámka</label><textarea name="poznamka" rows="3" placeholder="Doplňující informace..."></textarea></div>
+
+    <div class="full"><label><input type="checkbox" required> Souhlasím se zpracováním osobních údajů pro účely nabídky.</label></div>
+  </div>
+
+  <button type="submit" class="cta">Odeslat poptávku</button>
+</form>
+
+<script>
+function addRole() {
+  const roles = document.getElementById('roles');
+  const row = document.createElement('div');
+  row.className = 'form-grid role-row';
+  row.innerHTML = `
+    <input type="number" name="width[]" placeholder="Šířka (mm)" required>
+    <input type="number" name="height[]" placeholder="Výška (mm)" required>
+    <input type="number" name="count[]" placeholder="Počet ks" required>`;
+  roles.appendChild(row);
+}
+</script>
+
     document.getElementById('year').textContent = new Date().getFullYear();
 
     function addRole() {
