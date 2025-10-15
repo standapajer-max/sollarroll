@@ -283,10 +283,10 @@
       <h2>Galerie</h2>
       <p class="section-lead">Ukázky reálných instalací rolet SollarRoll.</p>
       <div class="gallery">
-        <img src="paneldum.png" alt="Instalace na panelovém domě">
-        <img src="roh.png" alt="Instalace na světlém rodinném domě">
-        <img src="rd.png" alt="Roleta na rodinném domě">
-        <img src="panelbrown.png" alt="Tmavé provedení na moderním domě">
+        <img src="gal1.png" alt="Instalace na panelovém domě">
+        <img src="gal2.png" alt="Instalace na světlém rodinném domě">
+        <img src="gal3.png" alt="Roleta na rodinném domě">
+        <img src="gal4.png" alt="Tmavé provedení na moderním domě">
       </div>
     </section>
 
@@ -345,7 +345,7 @@
 
           <textarea rows="3" name="poznamky" placeholder="Další poznámky nebo upřesnění..."></textarea>
 
-          <div class="checkbox"><input type="checkbox" name="souhlas" required><label>Souhlasím se zpracováním osobních údajů</label></div>
+          <div class="checkbox"><input type="checkbox" name="souhlas" required><label>Seznámil/a jsem se s <a href="obchodni-podminky.html" target="_blank">Obchodními podmínkami</a> a souhlasím se zpracováním osobních údajů.</label></div>
           <button type="submit" class="cta">Odeslat poptávku</button>
         </form>
       </div>
@@ -364,7 +364,7 @@
 
   <footer>
     <div class="wrap">
-      <small>© <span id="year"></span> Svět rolet. Všechna práva vyhrazena.</small>
+      <small>© <span id="year"></span> Svět rolet. Všechna práva vyhrazena. | <a href="obchodni-podminky.html">Obchodní podmínky</a></small>
     </div>
   </footer>
 
@@ -415,8 +415,11 @@
       lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
     });
 
-    // Aktualizace kotvy při načtení a resize (v případě změny velikosti)
-    window.addEventListener('load', updateAnchorPadding);
+    // Aktualizace kotvy při načtení a resize A scroll na top (FIX pro mobilní pozici)
+    window.addEventListener('load', () => {
+        window.scrollTo(0, 0); // Vynutí posun na začátek
+        updateAnchorPadding();
+    });
     window.addEventListener('resize', updateAnchorPadding);
     
   </script>
