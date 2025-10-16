@@ -34,8 +34,25 @@
 
     .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:48px}
     .brand{display:flex;align-items:center;gap:16px;font-weight:700;}
-    .brand img{width:90px;height:90px;border-radius:50%;transition:transform 0.3s ease;}
-    .brand img:hover{transform:scale(1.05);}
+    /* Změna pro zvýraznění loga */
+    .brand img{
+      width:90px;
+      height:90px;
+      border-radius:50%;
+      transition:transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+      
+      /* === ZMĚNA: Přidání bílého pozadí === */
+      background-color: white; 
+      
+      border: 3px solid var(--gold);
+      box-shadow: 0 0 10px rgba(202, 166, 106, 0.6);
+    }
+    .brand img:hover{
+      transform:scale(1.05);
+      /* Zesílená záře při najetí myší */
+      box-shadow: 0 0 15px rgba(240, 210, 138, 0.8), 0 0 5px rgba(255, 255, 255, 0.4);
+    }
+    /* Konec změn pro logo */
     .brand span{font-size:32px;font-weight:800;letter-spacing:0.8px;}
     .actions{display:flex;gap:22px;align-items:center}
     .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.18);color:var(--gold-2);text-decoration:none}
@@ -48,7 +65,13 @@
     :target::before {content:"";display:block;height:100px;margin-top:-100px;} 
 
     /* Hero */
-    .hero{margin-top:40px;display:grid;grid-template-columns:1.1fr 0.9fr;align-items:center;gap:28px}
+    .hero{
+        /* Zde jsme odebrali pevný margin-top, nastaví se dynamicky přes JS */
+        display:grid;
+        grid-template-columns:1.1fr 0.9fr;
+        align-items:center;
+        gap:28px
+    }
     @media(max-width:850px){.hero{grid-template-columns:1fr}}
     .hero h1{font-size:clamp(28px,4vw,46px);margin-bottom:12px}
     .hero p.lead{font-size:clamp(16px,2vw,20px);color:var(--muted);margin-bottom:16px}
@@ -61,11 +84,47 @@
     .badge small{display:block;font-weight:500;color:#000;font-size:14px;margin-top:2px}
     .badge::before{content:"🪛";position:absolute;left:-24px;top:6px;font-size:20px}
 
+    /* VÝROBA NA MÍRU - VYLEPŠENÁ GRAFIKA */
+    .hero-custom-info {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 1.5em; /* ZVĚTŠENÍ PÍSMA NA 1.5em */
+        font-weight: 700;
+        color: var(--gold-2);
+        margin-top: 30px;
+        text-shadow: 0 0 5px rgba(240, 210, 138, 0.4);
+    }
+    .hero-custom-info .icon {
+        font-size: 1.8em;
+        line-height: 1;
+        position: relative;
+        top: 2px;
+    }
+
+
     /* Sekce */
     section{margin:56px 0}
     h2{font-size:clamp(22px,3vw,32px);margin-bottom:10px}
     .section-lead{color:var(--muted);margin-bottom:24px}
     .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+
+    /* VÍCESLOUPOVNÝ KONTAKT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+    .contact-grid strong {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 1.1em;
+        color: var(--gold);
+    }
+    .contact-info {
+        border-right: 1px solid rgba(255,255,255,.1);
+        padding-right: 30px;
+    }
 
     /* Výhody */
     .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-top:20px}
@@ -125,7 +184,21 @@
 
     footer{margin-top:72px;padding:28px 0;color:var(--muted);border-top:1px solid rgba(255,255,255,.06);text-align:center}
 
-    /* === MOBILNÍ OPTIMALIZACE (MAX-WIDTH: 600PX) === */
+    /* === MOBILNÍ OPTIMALIZACE === */
+    @media (max-width: 850px) {
+        /* Přepnutí kontaktu na sloupce pro mobil */
+        .contact-grid {
+            grid-template-columns: 1fr;
+        }
+        .contact-info {
+            border-right: none;
+            padding-right: 0;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,.1);
+            margin-bottom: 20px;
+        }
+    }
+
     @media (max-width: 600px) {
         .wrap {
             padding: 16px; 
@@ -149,12 +222,6 @@
             padding: 8px 14px; /* Zmenšení CTA */
             font-size: 14px;
         }
-        
-        /* ZDE JE OPRAVA: Větší horní okraj pro sekci Hero na mobilu */
-        .hero {
-            margin-top: 120px; /* Zvětšeno z původních 20px na mobilu pro odsazení pod fixní header */
-        }
-
         /* Formulář */
         .color-preview {
             grid-template-columns: 1fr; /* Stohování náhledu barev */
@@ -189,12 +256,15 @@
     </div>
   </header>
 
-  <main class="wrap">
+  <main class="wrap" id="main-content">
     <section class="hero">
       <div>
         <h1>Nezávislá solární roleta pro Váš stín, klid a bezpečí</h1>
         <p class="lead">Prémiová roleta SollarRoll – bez kabeláže, chytré napájení a čistý design. Ideální pro novostavby i rekonstrukce.</p>
         <div class="badge">Jednoduchá montáž<small>Kterou zvládne téměř každý</small></div>
+        <p class="hero-custom-info">
+            <span class="icon">📏</span> Přesně pro vaše okno – vyrábíme na míru.
+        </p>
       </div>
       <img src="roletarez.jpg" alt="Řez solární roletou SollarRoll" loading="lazy">
     </section>
@@ -321,7 +391,7 @@
               <input type="number" name="pocet[]" placeholder="Počet ks" required>
               <select name="barva_boxu[]"><option value="">Barva boxu</option><option>Stříbrná</option><option>Bílá</option><option>Hnědá</option><option>Tm. hnědá</option><option>Antracit</option><option>Zlatý dub</option></select>
               <select name="barva_voditek[]"><option value="">Barva vodítek</option><option>Stříbrná</option><option>Bílá</option><option>Hnědá</option><option>Tm. hnědá</option><option>Antracit</option><option>Zlatý dub</option></select>
-              <select name="barva_pancire[]"><option value="">Barva pancíře</option><option>Stříbrná</option><option>Bílá</option><option>Hnědá</option><option>Tm. hnědá</option><option>Antracit</option><option>Zlatý dub</option></select>
+              <select name="barva_pancire[]"><option value="">Barva pancíře</option><option value="">Pancíř</option><option>Stříbrná</option><option>Bílá</option><option>Hnědá</option><option>Tm. hnědá</option><option>Antracit</option><option>Zlatý dub</option></select>
               <select name="barva_listy[]"><option value="">Barva koncové lišty</option><option>Stříbrná</option><option>Bílá</option><option>Hnědá</option><option>Tm. hnědá</option><option>Antracit</option><option>Zlatý dub</option></select>
             </div>
           </div>
@@ -355,11 +425,28 @@
 
     <section id="contact">
       <h2>Kontakt</h2>
-      <div class="card">
-        <p><strong>Svět rolet</strong><br>
-        Pšenčíkova 797/3, Kamýk, 142 00 Praha<br>
-        E-mail: <a href="mailto:info@svetrolet.cz">info@svetrolet.cz</a><br>
-        Telefon: <a href="tel:+420602314106">+420 602 314 106</a></p>
+      <div class="card contact-grid">
+        <div class="contact-info">
+          <p>
+            <strong>Fakturační a korespondenční adresa</strong>
+            Svět rolet<br>
+            UNIPOL, spol. s r.o.<br>
+            Pšenčíkova 797/3, Kamýk, 142 00 Praha<br>
+            <br>
+            IČ: 48585211<br>
+            DIČ: CZ48585211<br>
+          </p>
+        </div>
+        <div class="contact-details">
+          <p>
+            <strong>Výdejní místo</strong>
+            Pšenčíkova 797/3, Kamýk, 142 00 Praha<br>
+            <br>
+            <strong>Spojení</strong>
+            E-mail: <a href="mailto:info@svetrolet.cz">info@svetrolet.cz</a><br>
+            Telefon: <a href="tel:+420602314106">+420 602 314 106</a>
+          </p>
+        </div>
       </div>
     </section>
   </main>
@@ -382,22 +469,33 @@
     // Rok do patičky
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Opravený kód pro Smart Sticky Header (Skrýt dolů, Zobrazit nahoru)
-    let lastScrollTop = 0;
+    // Proměnné
     const nav = document.querySelector('.nav');
-    
-    // Funkce pro aktualizaci posunu kotvy (kvůli fixed headeru)
-    const updateAnchorPadding = () => {
+    const mainContent = document.getElementById('main-content');
+    let lastScrollTop = 0;
+
+    // Funkce 1: Nastaví margin na main, aby se obsah nezakryl fixed headerem
+    const updateHeroMargin = () => {
       const navHeight = nav.offsetHeight;
-      const styleElement = document.getElementById('anchor-padding-style') || document.createElement('style');
-      styleElement.id = 'anchor-padding-style';
-      // Nastavíme padding pro :target, aby obsah nejel pod fixed header
-      styleElement.innerHTML = `:target::before {content:"";display:block;height:${navHeight + 20}px;margin-top:-${navHeight + 20}px;}`;
-      document.head.appendChild(styleElement);
+      // Nastavíme padding-top na hlavní obsah (main) a přidáme 24px z wrapu
+      mainContent.style.paddingTop = `${navHeight + 24}px`;
     };
 
-    // Obsluhujeme skrývání/objevování navigace
-    window.addEventListener('scroll', function() {
+    // Funkce 2: Aktualizace posunu kotvy (kvůli fixed headeru)
+    const updateAnchorPadding = () => {
+      const navHeight = nav.offsetHeight;
+      let styleElement = document.getElementById('anchor-padding-style');
+      if (!styleElement) {
+          styleElement = document.createElement('style');
+          styleElement.id = 'anchor-padding-style';
+          document.head.appendChild(styleElement);
+      }
+      // Nastavíme padding pro :target, aby obsah nejel pod fixed header + mezera 
+      styleElement.innerHTML = `:target::before {content:"";display:block;height:${navHeight + 20}px;margin-top:-${navHeight + 20}px;}`;
+    };
+
+    // Funkce 3: Obsluhujeme skrývání/objevování navigace (Smart Sticky Header)
+    const handleScroll = () => {
       const navHeight = nav.offsetHeight;
       let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       
@@ -415,14 +513,20 @@
       }
       
       lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-    });
+    };
 
-    // Aktualizace kotvy při načtení a resize A scroll na top (FIX pro mobilní pozici)
+
+    // Spuštění funkcí při načtení stránky
     window.addEventListener('load', () => {
+        updateHeroMargin();
+        updateAnchorPadding();
         window.scrollTo(0, 0); // Vynutí posun na začátek
+    });
+    window.addEventListener('resize', () => {
+        updateHeroMargin();
         updateAnchorPadding();
     });
-    window.addEventListener('resize', updateAnchorPadding);
+    window.addEventListener('scroll', handleScroll);
     
   </script>
 </body>
